@@ -4,6 +4,7 @@ import sys
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
 from ovis_event_log.constants import (  # noqa: E402
+    BRANCH_EVENT_FAMILIES,
     BRIDGE_EVENT_FAMILIES,
     CAPABILITY_EVENT_FAMILIES,
     COMPACTION_EVENT_FAMILIES,
@@ -19,6 +20,11 @@ def test_event_family_groupings_are_sourced_from_canonical_event_type() -> None:
     assert SIGNAL_EVENT_FAMILIES == (
         EventType.SIGNAL_CREATED,
         EventType.SIGNAL_COMPRESSED,
+    )
+    assert BRANCH_EVENT_FAMILIES == (
+        EventType.BRANCH_CREATED,
+        EventType.BRANCH_EVENT_APPENDED,
+        EventType.BRANCH_CLOSED,
     )
     assert WORK_OBJECT_EVENT_FAMILIES == (
         EventType.WORK_OBJECT_CREATED,

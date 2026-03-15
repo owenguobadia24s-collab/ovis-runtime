@@ -27,3 +27,9 @@ def generate_event_id() -> EventId:
     """Generate a canonical event_id."""
 
     return EventId(generate_prefixed_id("evt_"))
+
+
+def generate_branch_id() -> BranchId:
+    """Generate a canonical branch_id."""
+
+    return BranchId(generate_prefixed_id("br_"))

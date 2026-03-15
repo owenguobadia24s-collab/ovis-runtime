@@ -99,6 +99,9 @@ class SideEffectClass(StrEnum):
 class EventType(StrEnum):
     SIGNAL_CREATED = "signal.created"
     SIGNAL_COMPRESSED = "signal.compressed"
+    BRANCH_CREATED = "branch.created"
+    BRANCH_EVENT_APPENDED = "branch.event_appended"
+    BRANCH_CLOSED = "branch.closed"
     WORK_OBJECT_CREATED = "work_object.created"
     WORK_OBJECT_UPDATED = "work_object.updated"
     PLAN_JOB_CREATED = "plan_job.created"
