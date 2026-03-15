@@ -10,6 +10,9 @@ Current scope:
 - policy hook placeholders
 - result-envelope structure
 - shared types
+- canonical state/schema package scaffold
+- JSON Schema export surface
+- transition validation surface
 - test skeletons
 
 Out of scope for this scaffold:
@@ -21,3 +24,6 @@ Out of scope for this scaffold:
 - real policy evaluation
 
 Architectural truth remains upstream in `ovis-blueprint`, especially ADR-001 through ADR-006 and the CJ-001 scaffold task.
+
+Schema authoring principle:
+- Typed Python models are primary; JSON Schema is generated/exported, not hand-maintained separately unless required.
