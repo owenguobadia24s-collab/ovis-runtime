@@ -9,12 +9,12 @@ from ovis_event_log import build_root_event, is_event_append_ready, validate_eve
 
 def test_append_validation_accepts_valid_canonical_event() -> None:
     event = build_root_event(
-        event_id="evt-001",
+        event_id="evt_001",
         event_type="signal.created",
-        correlation_id="corr-001",
+        correlation_id="corr_001",
         object_type="signal",
         object_id="sig-001",
-        branch_id="br-001",
+        branch_id="br_001",
         actor_type="system",
         actor_id="ovis",
         created_at=datetime.now(UTC),
@@ -31,16 +31,16 @@ def test_append_validation_rejects_non_event_objects() -> None:
 
 def test_append_validation_rejects_self_parent_reference() -> None:
     event = build_root_event(
-        event_id="evt-001",
+        event_id="evt_001",
         event_type="signal.created",
-        correlation_id="corr-001",
+        correlation_id="corr_001",
         object_type="signal",
         object_id="sig-001",
-        branch_id="br-001",
+        branch_id="br_001",
         actor_type="system",
         actor_id="ovis",
         created_at=datetime.now(UTC),
         payload_ref="payloads/signal-001.json",
-    ).model_copy(update={"parent_event_id": "evt-001"})
+    ).model_copy(update={"parent_event_id": "evt_001"})
 
     assert not is_event_append_ready(event)

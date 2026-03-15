@@ -50,6 +50,7 @@ ENV/
 .coverage.*
 htmlcov/
 .cache/
+_pycache_/
 
 # -------------------------------
 
