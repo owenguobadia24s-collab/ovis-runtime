@@ -112,3 +112,6 @@ class EventType(StrEnum):
     RUNTIME_REQUESTED = "runtime.requested"
     RUNTIME_RESPONSE_RECEIVED = "runtime.response_received"
     RUNTIME_ERROR = "runtime.error"
+    CAPABILITY_REQUESTED = "capability.requested"
+    CAPABILITY_COMPLETED = "capability.completed"
+    CAPABILITY_ERROR = "capability.error"

@@ -5,6 +5,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
 from ovis_event_log.constants import (  # noqa: E402
     BRIDGE_EVENT_FAMILIES,
+    CAPABILITY_EVENT_FAMILIES,
     COMPACTION_EVENT_FAMILIES,
     EXECUTION_EVENT_FAMILIES,
     PLAN_EVENT_FAMILIES,
@@ -30,6 +31,11 @@ def test_event_family_groupings_are_sourced_from_canonical_event_type() -> None:
     assert EXECUTION_EVENT_FAMILIES == (
         EventType.EXECUTE_JOB_CREATED,
         EventType.EXECUTE_JOB_STATUS_CHANGED,
+    )
+    assert CAPABILITY_EVENT_FAMILIES == (
+        EventType.CAPABILITY_REQUESTED,
+        EventType.CAPABILITY_COMPLETED,
+        EventType.CAPABILITY_ERROR,
     )
     assert BRIDGE_EVENT_FAMILIES[-1] == EventType.BRIDGE_ACTION_FAILED
     assert COMPACTION_EVENT_FAMILIES == (EventType.COMPACTION_CREATED,)

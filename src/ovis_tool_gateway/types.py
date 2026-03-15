@@ -56,5 +56,6 @@ class ExecutionResultEnvelope:
     object_refs: Mapping[str, str] = field(default_factory=dict)
     branch_ref: str | None = None
     output_ref: str | None = None
+    result_payload: Any | None = None
     payload_hash: str | None = None
     error_details: str | None = None

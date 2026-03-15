@@ -4,16 +4,17 @@ from __future__ import annotations
 
 from typing import Protocol
 
+from .types import CapabilityDefinition
 from .types import ExecutionRequest, PolicyDecision
 
 
 class PolicyHook(Protocol):
-    def evaluate(self, request: ExecutionRequest) -> PolicyDecision:
+    def evaluate(self, request: ExecutionRequest, definition: CapabilityDefinition) -> PolicyDecision:
         """Evaluate a request before execution."""
 
 
 class PlaceholderPolicyHook:
     """Placeholder-only policy hook."""
 
-    def evaluate(self, request: ExecutionRequest) -> PolicyDecision:
+    def evaluate(self, request: ExecutionRequest, definition: CapabilityDefinition) -> PolicyDecision:
         raise NotImplementedError("CJ-001 scaffold only: no policy evaluation implementation.")

@@ -1,5 +1,7 @@
 """Scaffold-only OVIS tool gateway package."""
 
+from .capabilities import DEFAULT_CAPABILITY_REGISTRY, capability
+from .dispatcher import CapabilityDispatcher
 from .envelopes import placeholder_result
 from .registry import CapabilityRegistry
 from .schema_loader import PlaceholderSchemaLoader, SchemaHandle, SchemaLoader
@@ -13,8 +15,10 @@ from .types import (
 )
 
 __all__ = [
+    "CapabilityDispatcher",
     "CapabilityDefinition",
     "CapabilityRegistry",
+    "DEFAULT_CAPABILITY_REGISTRY",
     "ExecutionRequest",
     "ExecutionResultEnvelope",
     "ExecutionWrapper",
@@ -25,5 +29,6 @@ __all__ = [
     "PolicyHook",
     "SchemaHandle",
     "SchemaLoader",
+    "capability",
     "placeholder_result",
 ]

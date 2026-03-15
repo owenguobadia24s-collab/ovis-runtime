@@ -3,6 +3,7 @@
 from .backends import FileEventWriter, MemoryEventWriter
 from .constants import (
     BRIDGE_EVENT_FAMILIES,
+    CAPABILITY_EVENT_FAMILIES,
     COMPACTION_EVENT_FAMILIES,
     EXECUTION_EVENT_FAMILIES,
     PLAN_EVENT_FAMILIES,
@@ -20,6 +21,7 @@ from .writer import AppendOnlyEventWriter, EventAppendReceipt, PlaceholderAppend
 __all__ = [
     "AppendOnlyEventWriter",
     "BRIDGE_EVENT_FAMILIES",
+    "CAPABILITY_EVENT_FAMILIES",
     "COMPACTION_EVENT_FAMILIES",
     "EXECUTION_EVENT_FAMILIES",
     "EventAppendReceipt",

@@ -25,3 +25,4 @@ def test_core_enums_expose_canonical_values() -> None:
     assert PolicyProfile.HUMAN_APPROVED == "human-approved"
     assert RiskClass.R4 == "R4"
     assert EventType.COMPACTION_CREATED == "compaction.created"
+    assert EventType.CAPABILITY_ERROR == "capability.error"
