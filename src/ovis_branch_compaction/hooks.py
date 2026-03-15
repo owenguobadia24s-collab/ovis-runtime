@@ -4,9 +4,10 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from datetime import datetime
+from typing import Any, Mapping
 
 from ovis_event_log import AppendOnlyEventWriter, build_child_event, build_root_event
-from ovis_state_models import ActorType, Branch, CompactionRecord, Event
+from ovis_state_models import ActorType, Branch, CompactionRecord, Event, generate_event_id
 
 
 @dataclass(frozen=True)
@@ -31,6 +32,7 @@ def build_compaction_created_event(
     record: CompactionRecord,
     branch: Branch,
     context: CompactionHookContext,
+    payload_inline: Mapping[str, Any] | None = None,
 ) -> Event:
     """Build the canonical compaction.created event without emitting it."""
 
@@ -47,10 +49,11 @@ def build_compaction_created_event(
             actor_id=context.actor_id,
             created_at=context.created_at,
             payload_ref=payload_ref,
+            payload_inline=payload_inline,
         )
         return build_child_event(
             parent_event=parent_event,
-            event_id=f"{record.compaction_id}-event",
+            event_id=generate_event_id(),
             event_type="compaction.created",
             object_type="compaction_record",
             object_id=record.compaction_id,
@@ -58,10 +61,11 @@ def build_compaction_created_event(
             actor_id=context.actor_id,
             created_at=context.created_at,
             payload_ref=payload_ref,
+            payload_inline=payload_inline,
         )
 
     return build_root_event(
-        event_id=f"{record.compaction_id}-event",
+        event_id=generate_event_id(),
         event_type="compaction.created",
         correlation_id=context.correlation_id,
         object_type="compaction_record",
@@ -71,4 +75,5 @@ def build_compaction_created_event(
         actor_id=context.actor_id,
         created_at=context.created_at,
         payload_ref=payload_ref,
+        payload_inline=payload_inline,
     )

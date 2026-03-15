@@ -26,6 +26,7 @@ from .ids import (
     SignalId,
     WorkObjectId,
     generate_branch_id,
+    generate_compaction_id,
     generate_event_id,
     generate_prefixed_id,
 )
@@ -76,6 +77,7 @@ __all__ = [
     "WorkObject",
     "WorkObjectId",
     "generate_branch_id",
+    "generate_compaction_id",
     "WorkObjectStatus",
     "export_model_schemas",
     "export_schema_manifest",

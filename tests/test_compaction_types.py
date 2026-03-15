@@ -16,11 +16,11 @@ from ovis_state_models import Branch, CompactionRecord, ObjectRef, ObjectType  #
 
 def _branch() -> Branch:
     return Branch(
-        branch_id="br-001",
-        root_signal_id="sig-001",
-        current_state_ref="state/branch-001.json",
+        branch_id="br_001",
+        root_signal_id="sig_001",
+        current_state_ref="state/branch_001.json",
         latest_compaction_id=None,
-        status="active",
+        status="open",
         created_at=datetime.now(UTC),
         updated_at=datetime.now(UTC),
     )
@@ -28,12 +28,12 @@ def _branch() -> Branch:
 
 def _record() -> CompactionRecord:
     return CompactionRecord(
-        compaction_id="cmp-001",
-        branch_id="br-001",
+        compaction_id="cmp_001",
+        branch_id="br_001",
         source_range="events:1-10",
-        compacted_state_ref="state/compactions/cmp-001.json",
+        compacted_state_ref="state/compactions/cmp_001.json",
         preserved_reference_index=(
-            ObjectRef(object_type=ObjectType.SIGNAL, object_id="sig-001"),
+            ObjectRef(object_type=ObjectType.SIGNAL, object_id="sig_001"),
         ),
         created_at=datetime.now(UTC),
     )
@@ -42,10 +42,10 @@ def _record() -> CompactionRecord:
 def test_compaction_types_accept_canonical_models() -> None:
     branch = _branch()
     index = PreservedReferenceIndex(
-        references=(ObjectRef(object_type=ObjectType.SIGNAL, object_id="sig-001"),)
+        references=(ObjectRef(object_type=ObjectType.SIGNAL, object_id="sig_001"),)
     )
     output = CompactedStateOutput(
-        compacted_state_ref="state/compactions/cmp-001.json",
+        compacted_state_ref="state/compactions/cmp_001.json",
         preserved_reference_index=index,
         source_range="events:1-10",
     )
@@ -53,7 +53,7 @@ def test_compaction_types_accept_canonical_models() -> None:
         branch=branch,
         trigger=CompactionTriggerClass.HISTORY_NOISE,
         source_range="events:1-10",
-        correlation_id="corr-001",
+        correlation_id="corr_001",
         preserved_reference_index=index,
     )
     response = CompactionResponse(
@@ -62,5 +62,5 @@ def test_compaction_types_accept_canonical_models() -> None:
         output=output,
     )
 
-    assert request.branch.branch_id == "br-001"
-    assert response.record.compaction_id == "cmp-001"
+    assert request.branch.branch_id == "br_001"
+    assert response.record.compaction_id == "cmp_001"

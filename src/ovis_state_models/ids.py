@@ -33,3 +33,9 @@ def generate_branch_id() -> BranchId:
     """Generate a canonical branch_id."""
 
     return BranchId(generate_prefixed_id("br_"))
+
+
+def generate_compaction_id() -> CompactionId:
+    """Generate a canonical compaction_id."""
+
+    return CompactionId(generate_prefixed_id("cmp_"))

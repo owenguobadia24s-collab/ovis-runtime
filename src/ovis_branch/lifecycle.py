@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-from dataclasses import replace
 from datetime import UTC, datetime
 
 from ovis_event_log import AppendOnlyEventWriter, build_root_event, emit_event
@@ -113,6 +112,32 @@ class BranchLifecycleManager:
         )
         return stored_state
 
+    def record_compaction(
+        self,
+        branch_id: str,
+        compaction_id: str,
+        compacted_state_ref: str,
+    ) -> BranchState:
+        self._validate_branch_id(branch_id)
+        self._validate_compaction_id(compaction_id)
+        state = self._store.get(branch_id)
+
+        timestamp = datetime.now(UTC)
+        updated_branch = state.branch.model_copy(
+            update={
+                "latest_compaction_id": compaction_id,
+                "current_state_ref": compacted_state_ref,
+                "updated_at": timestamp,
+            }
+        )
+        updated_state = BranchState(
+            branch=updated_branch,
+            correlation_id=state.correlation_id,
+            event_refs=state.event_refs,
+            latest_event=state.latest_event,
+        )
+        return self._store.replace(updated_state)
+
     def _normalize_create_source(
         self,
         source: Signal | CreateBranchInput,
@@ -192,3 +217,7 @@ class BranchLifecycleManager:
     def _validate_event_id(self, event_id: str) -> None:
         if not event_id.startswith("evt_"):
             raise ValueError("event_id must use the canonical evt_ prefix.")
+
+    def _validate_compaction_id(self, compaction_id: str) -> None:
+        if not compaction_id.startswith("cmp_"):
+            raise ValueError("compaction_id must use the canonical cmp_ prefix.")

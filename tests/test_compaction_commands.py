@@ -21,19 +21,19 @@ def test_placeholder_branch_compaction_runner_is_explicitly_unimplemented() -> N
     command = CompactionCommand(
         request=CompactionRequest(
             branch=Branch(
-                branch_id="br-001",
-                root_signal_id="sig-001",
-                current_state_ref="state/branch-001.json",
+                branch_id="br_001",
+                root_signal_id="sig_001",
+                current_state_ref="state/branch_001.json",
                 latest_compaction_id=None,
-                status="active",
+                status="open",
                 created_at=datetime.now(UTC),
                 updated_at=datetime.now(UTC),
             ),
             trigger=CompactionTriggerClass.HISTORY_NOISE,
             source_range="events:1-10",
-            correlation_id="corr-001",
+            correlation_id="corr_001",
             preserved_reference_index=PreservedReferenceIndex(
-                references=(ObjectRef(object_type=ObjectType.SIGNAL, object_id="sig-001"),)
+                references=(ObjectRef(object_type=ObjectType.SIGNAL, object_id="sig_001"),)
             ),
         )
     )

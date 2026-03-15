@@ -32,8 +32,8 @@ class CompactionRequest:
     branch: Branch
     trigger: CompactionTriggerClass
     source_range: str
-    correlation_id: str
     preserved_reference_index: PreservedReferenceIndex
+    correlation_id: str | None = None
     parent_event_id: str | None = None
 
 
