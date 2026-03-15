@@ -26,8 +26,8 @@ def validate_event_for_append(event: Event) -> None:
     _validate_prefix("branch_id", str(event.branch_id), "br_")
     if not event.created_at:
         raise ValueError("Event requires created_at.")
-    if not event.payload_ref and not event.payload_hash:
-        raise ValueError("Event requires payload_ref or payload_hash.")
+    if not event.payload_ref and not event.payload_hash and event.payload_inline is None:
+        raise ValueError("Event requires payload_ref, payload_hash, or payload_inline.")
     if event.parent_event_id == event.event_id:
         raise ValueError("Event cannot reference itself as parent_event_id.")
 

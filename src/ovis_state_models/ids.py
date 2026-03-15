@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from typing import NewType
+from uuid import uuid4
 
 SignalId = NewType("SignalId", str)
 WorkObjectId = NewType("WorkObjectId", str)
@@ -14,3 +15,15 @@ BridgeActionId = NewType("BridgeActionId", str)
 BranchId = NewType("BranchId", str)
 CompactionId = NewType("CompactionId", str)
 CorrelationId = NewType("CorrelationId", str)
+
+
+def generate_prefixed_id(prefix: str) -> str:
+    """Generate a canonical prefixed OVIS ID using a lowercase UUID4 suffix."""
+
+    return f"{prefix}{uuid4()}"
+
+
+def generate_event_id() -> EventId:
+    """Generate a canonical event_id."""
+
+    return EventId(generate_prefixed_id("evt_"))

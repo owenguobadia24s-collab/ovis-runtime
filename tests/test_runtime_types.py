@@ -38,6 +38,7 @@ def test_runtime_types_are_constructible() -> None:
     )
     response = RuntimeResponse(
         response_id="resp-001",
+        provider_name="openai",
         output_text="placeholder",
         continuation=continuation,
         provider_response_ref="provider-resp-001",

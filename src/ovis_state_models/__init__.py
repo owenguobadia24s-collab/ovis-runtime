@@ -25,6 +25,8 @@ from .ids import (
     PlanJobId,
     SignalId,
     WorkObjectId,
+    generate_event_id,
+    generate_prefixed_id,
 )
 from .models import (
     Approval,
@@ -75,5 +77,7 @@ __all__ = [
     "WorkObjectStatus",
     "export_model_schemas",
     "export_schema_manifest",
+    "generate_event_id",
+    "generate_prefixed_id",
     "get_model_registry",
 ]

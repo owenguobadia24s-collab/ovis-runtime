@@ -43,7 +43,9 @@ class RuntimeResponse:
     """Thin runtime response envelope for the canonical adapter surface."""
 
     response_id: str | None
+    provider_name: str
     output_text: str
     continuation: RuntimeContinuationRef | None
     provider_response_ref: str | None = None
+    finish_reason: str | None = None
     gateway_requests: tuple[ExecutionRequest, ...] = ()

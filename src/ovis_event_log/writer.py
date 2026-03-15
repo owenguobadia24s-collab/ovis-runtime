@@ -35,6 +35,7 @@ def normalize_event_for_persistence(event: Event) -> PersistedEventRecord:
             "actor_id": event.actor_id,
             "payload_ref": event.payload_ref,
             "payload_hash": event.payload_hash,
+            "payload_inline": dict(event.payload_inline) if event.payload_inline is not None else None,
         },
     }
 

@@ -109,3 +109,6 @@ class EventType(StrEnum):
     BRIDGE_ACTION_COMPLETED = "bridge_action.completed"
     BRIDGE_ACTION_FAILED = "bridge_action.failed"
     COMPACTION_CREATED = "compaction.created"
+    RUNTIME_REQUESTED = "runtime.requested"
+    RUNTIME_RESPONSE_RECEIVED = "runtime.response_received"
+    RUNTIME_ERROR = "runtime.error"

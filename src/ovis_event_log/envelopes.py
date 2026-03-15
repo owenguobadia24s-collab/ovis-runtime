@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from datetime import datetime
+from typing import Any, Mapping
 
 from ovis_state_models import ActorType, BranchId, CorrelationId, Event, EventId, EventType, ObjectType
 
@@ -34,6 +35,7 @@ def build_root_event(
     created_at: datetime,
     payload_ref: str | None = None,
     payload_hash: str | None = None,
+    payload_inline: Mapping[str, Any] | None = None,
 ) -> Event:
     """Construct a canonical root event with explicit branch and correlation context."""
 
@@ -48,6 +50,7 @@ def build_root_event(
         actor_id=actor_id,
         payload_ref=payload_ref,
         payload_hash=payload_hash,
+        payload_inline=payload_inline,
         created_at=created_at,
     )
 
@@ -64,6 +67,7 @@ def build_child_event(
     created_at: datetime,
     payload_ref: str | None = None,
     payload_hash: str | None = None,
+    payload_inline: Mapping[str, Any] | None = None,
 ) -> Event:
     """Construct a canonical child event that inherits parent lineage by default."""
 
@@ -80,5 +84,6 @@ def build_child_event(
         actor_id=actor_id,
         payload_ref=payload_ref,
         payload_hash=payload_hash,
+        payload_inline=payload_inline,
         created_at=created_at,
     )

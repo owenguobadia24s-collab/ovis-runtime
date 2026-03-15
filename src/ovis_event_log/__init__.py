@@ -6,6 +6,7 @@ from .constants import (
     COMPACTION_EVENT_FAMILIES,
     EXECUTION_EVENT_FAMILIES,
     PLAN_EVENT_FAMILIES,
+    RUNTIME_EVENT_FAMILIES,
     SIGNAL_EVENT_FAMILIES,
     WORK_OBJECT_EVENT_FAMILIES,
 )
@@ -26,6 +27,7 @@ __all__ = [
     "MemoryEventWriter",
     "PLAN_EVENT_FAMILIES",
     "PlaceholderAppendOnlyEventWriter",
+    "RUNTIME_EVENT_FAMILIES",
     "SIGNAL_EVENT_FAMILIES",
     "WORK_OBJECT_EVENT_FAMILIES",
     "build_child_event",
