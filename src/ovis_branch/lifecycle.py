@@ -5,7 +5,8 @@ from __future__ import annotations
 from datetime import UTC, datetime
 
 from ovis_event_log import AppendOnlyEventWriter, build_root_event, emit_event
-from ovis_state_models import ActorType, Branch, Event, EventType, ObjectType, Signal, generate_branch_id, generate_event_id
+from ovis_ids import generate_branch_id, generate_event_id
+from ovis_state_models import ActorType, Branch, Event, EventType, ObjectType, Signal
 
 from .store import BranchStore, InMemoryBranchStore
 from .types import BranchEventReference, BranchState, BranchStatus, CreateBranchInput

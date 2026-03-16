@@ -5,7 +5,8 @@ from __future__ import annotations
 from datetime import UTC, datetime
 
 from ovis_event_log import AppendOnlyEventWriter, build_child_event, build_root_event, emit_event
-from ovis_state_models import ActorType, Event, EventType, ObjectType, generate_event_id
+from ovis_ids import generate_event_id
+from ovis_state_models import ActorType, Event, EventType, ObjectType
 
 from .envelopes import build_blocked_envelope, build_error_envelope, build_success_envelope
 from .executor import ExecutionWrapper

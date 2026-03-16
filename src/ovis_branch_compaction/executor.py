@@ -8,7 +8,8 @@ from pathlib import Path
 
 from ovis_branch import BranchLifecycleManager
 from ovis_event_log import emit_event
-from ovis_state_models import CompactionRecord, generate_compaction_id
+from ovis_ids import generate_compaction_id
+from ovis_state_models import CompactionRecord
 
 from .commands import BranchCompactionCommandRunner, CompactionCommand
 from .hooks import CompactionHookContext, CompactionHooks, build_compaction_created_event

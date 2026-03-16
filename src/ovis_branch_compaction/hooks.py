@@ -7,7 +7,8 @@ from datetime import datetime
 from typing import Any, Mapping
 
 from ovis_event_log import AppendOnlyEventWriter, build_child_event, build_root_event
-from ovis_state_models import ActorType, Branch, CompactionRecord, Event, generate_event_id
+from ovis_ids import generate_event_id
+from ovis_state_models import ActorType, Branch, CompactionRecord, Event
 
 
 @dataclass(frozen=True)

@@ -3,6 +3,7 @@ import sys
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
+from ovis_ids import generate_branch_id  # noqa: E402
 from ovis_state_models.enums import (  # noqa: E402
     ApprovalDecision,
     EventType,
@@ -10,7 +11,7 @@ from ovis_state_models.enums import (  # noqa: E402
     RiskClass,
     WorkObjectStatus,
 )
-from ovis_state_models.ids import BranchId, CorrelationId, SignalId, generate_branch_id  # noqa: E402
+from ovis_state_models.ids import BranchId, CorrelationId, SignalId  # noqa: E402
 
 
 def test_canonical_id_aliases_are_constructible() -> None:
