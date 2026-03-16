@@ -12,6 +12,9 @@ dependencies = [
     "pydantic>=2,<3",
 ]
 
+[project.scripts]
+ovis = "ovis_operator.cli:main"
+
 [tool.setuptools]
 package-dir = {"" = "src"}
 

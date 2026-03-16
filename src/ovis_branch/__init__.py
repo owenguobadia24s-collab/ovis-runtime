@@ -1,7 +1,7 @@
 """Canonical branch lifecycle package."""
 
 from .lifecycle import BranchLifecycleManager
-from .store import BranchStore, InMemoryBranchStore
+from .store import BranchStore, InMemoryBranchStore, JsonFileBranchStore
 from .types import BranchEventReference, BranchState, BranchStatus, CreateBranchInput
 
 __all__ = [
@@ -12,4 +12,5 @@ __all__ = [
     "BranchStore",
     "CreateBranchInput",
     "InMemoryBranchStore",
+    "JsonFileBranchStore",
 ]
