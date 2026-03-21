@@ -1,5 +1,5 @@
 # ---
-# id: MODULE-GOV-0008
+# id: MODULE-GOV-0013
 # title: OVIS Metadata Git Source
 # type: MODULE
 # status: active
@@ -12,7 +12,7 @@
 # owner: Owen Vitae
 # created: '2026-03-21'
 # last_updated: '2026-03-21'
-# registry: ovis-blueprint/REGISTRIES/entries/MODULE-GOV-0008.yaml
+# registry: ovis-blueprint/REGISTRIES/entries/MODULE-GOV-0013.yaml
 # ---
 """Git-backed source access for committed metadata reconciliation."""
 
