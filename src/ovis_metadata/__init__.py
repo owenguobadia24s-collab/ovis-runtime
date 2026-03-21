@@ -17,12 +17,14 @@
 """Workspace metadata validation and reconciliation helpers."""
 
 from .parser import parse_metadata_file
+from .normalizer import normalize_workspace
 from .reconciler import reconcile_workspace
 from .scanner import scan_workspace
 from .scaffold import init_file
 
 __all__ = [
     "init_file",
+    "normalize_workspace",
     "parse_metadata_file",
     "reconcile_workspace",
     "scan_workspace",

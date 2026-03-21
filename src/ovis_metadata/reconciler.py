@@ -14,92 +14,170 @@
 # last_updated: '2026-03-21'
 # registry: ovis-blueprint/REGISTRIES/entries/MODULE-GOV-0007.yaml
 # ---
-"""Fail-closed reconciliation between scanned metadata and canonical registry state."""
+"""Read-only reconciliation between canonical artifact metadata and held registry working state."""
 
 from __future__ import annotations
 
-from copy import deepcopy
 from pathlib import Path
 
-from .registry import current_snapshot_hash, load_registry_state, write_registry_state
+from .derive import derive_registry_state
+from .drift import detect_registry_drift
+from .registry import (
+    compile_candidate_aggregate,
+    compute_derivation_hash,
+    read_registry_state,
+    render_candidate_artifact,
+)
 from .scanner import scan_workspace
-from .types import Issue, ReconcileResult
+from .types import DriftReport, Issue, ReconciliationReport
 
 
 def reconcile_workspace(
     repo_roots: list[Path],
     *,
     blueprint_root: Path,
+    exclusion_manifest: Path,
+    source_ref: str = "HEAD",
+    include_candidates: str = "summary",
     migration_phase: str = "M2",
     allow_legacy: bool = False,
-) -> ReconcileResult:
-    scan_report = scan_workspace(repo_roots, migration_phase=migration_phase, allow_legacy=allow_legacy)
-    registry_state = load_registry_state(blueprint_root)
-    issues = list(scan_report.issues)
+) -> ReconciliationReport:
+    scan_report = scan_workspace(
+        repo_roots,
+        migration_phase=migration_phase,
+        allow_legacy=allow_legacy,
+        source_ref=source_ref,
+        exclusion_manifest=exclusion_manifest,
+    )
+    current_state, registry_issues = read_registry_state(blueprint_root)
+
+    artifact_issues = list(scan_report.issues)
+    artifact_issues.extend(registry_issues)
+
+    scope_summary = {
+        "included_count": len(scan_report.items),
+        "scanned_count": len(scan_report.scanned_files),
+        "excluded_count": len(scan_report.excluded_files),
+        "excluded_by_reason": _count_excluded(scan_report.excluded_files),
+    }
 
     if not scan_report.complete:
-        issues.append(Issue("ERROR", str(blueprint_root), "Scan incomplete; reconciliation aborted."))
-        return ReconcileResult([], [], [], str(registry_state.aggregate_path), issues)
+        artifact_issues.append(Issue("ERROR", str(blueprint_root), "Scan incomplete; reconciliation aborted."))
+        return _error_report(scan_report.source_refs, scope_summary, artifact_issues)
 
-    if any(issue.severity == "ERROR" for issue in issues):
-        issues.append(Issue("ERROR", str(blueprint_root), "Validation errors present; reconciliation aborted without writes."))
-        return ReconcileResult([], [], [], str(registry_state.aggregate_path), issues)
+    if current_state is None:
+        artifact_issues.append(Issue("ERROR", str(blueprint_root), "Current registry working state could not be loaded."))
+        return _error_report(scan_report.source_refs, scope_summary, artifact_issues)
 
-    if current_snapshot_hash(blueprint_root) != registry_state.snapshot_hash:
-        issues.append(Issue("ERROR", str(blueprint_root), "Allocator state changed since scan start; reconciliation aborted."))
-        return ReconcileResult([], [], [], str(registry_state.aggregate_path), issues)
+    if any(issue.severity == "ERROR" for issue in artifact_issues):
+        artifact_issues.append(
+            Issue("ERROR", str(blueprint_root), "Artifact or registry input errors present; dry-run reconciliation aborted.")
+        )
+        return _error_report(scan_report.source_refs, scope_summary, artifact_issues)
 
-    allocators = deepcopy(registry_state.allocators)
-    entries = deepcopy(registry_state.entries)
-    families = allocators.setdefault("families", {})
-    added_ids: list[str] = []
-    updated_ids: list[str] = []
-    removed_ids: list[str] = []
+    derived_state, derivation_issues = derive_registry_state(
+        scan_report.items,
+        current_allocators=current_state.allocators,
+        build_candidate_artifact=render_candidate_artifact,
+        build_aggregate_payload=lambda allocators, entries: compile_candidate_aggregate(
+            allocators,
+            entries,
+            source_refs=scan_report.source_refs,
+        ),
+        compute_hash=compute_derivation_hash,
+    )
+    artifact_issues.extend(derivation_issues)
+    if derived_state is None:
+        artifact_issues.append(Issue("ERROR", str(blueprint_root), "Registry derivation failed before drift detection."))
+        return _error_report(scan_report.source_refs, scope_summary, artifact_issues)
 
-    path_to_id = {f"{entry['repo']}:{entry['path']}": identifier for identifier, entry in entries.items()}
-    discovered = {str(item.metadata["id"]): item for item in scan_report.items}
+    aggregate_candidate = compile_candidate_aggregate(
+        derived_state.allocators,
+        derived_state.entries,
+        source_refs=scan_report.source_refs,
+    )
+    derived_state.aggregate = aggregate_candidate
+    derived_state.candidate_artifacts["aggregate"] = render_candidate_artifact(
+        aggregate_candidate,
+        target_path="REGISTRIES/OVIS_FILE_REGISTRY.yaml",
+    )
+    derived_state.derivation_hash = compute_derivation_hash(
+        {key: artifact.text for key, artifact in derived_state.candidate_artifacts.items()}
+    )
 
-    for identifier, item in discovered.items():
-        location_key = f"{item.metadata['repo']}:{item.metadata['path']}"
-        conflicting_identifier = path_to_id.get(location_key)
-        if conflicting_identifier and conflicting_identifier != identifier:
-            issues.append(Issue("ERROR", location_key, f"Path already registered to {conflicting_identifier}; reconciliation aborted."))
-            continue
+    determinism_issues = _ensure_deterministic_render(derived_state)
+    artifact_issues.extend(determinism_issues)
+    if any(issue.severity == "ERROR" for issue in artifact_issues):
+        artifact_issues.append(Issue("ERROR", str(blueprint_root), "Determinism checks failed; reconciliation aborted."))
+        return _error_report(scan_report.source_refs, scope_summary, artifact_issues)
 
-        family_key = _family_key(identifier)
-        family_state = families.setdefault(family_key, {"next_number": 1, "retired_ids": []})
-        sequence_number = int(identifier.rsplit("-", 1)[1])
-        next_number = int(family_state["next_number"])
-        if sequence_number > next_number:
-            issues.append(Issue("ERROR", location_key, f"Allocator gap detected for {identifier}; reconciliation aborted."))
-            continue
-
-        payload = dict(item.metadata)
-        existing = entries.get(identifier)
-        if existing is None:
-            entries[identifier] = payload
-            added_ids.append(identifier)
-            if sequence_number == next_number:
-                family_state["next_number"] = sequence_number + 1
-        elif existing != payload:
-            entries[identifier] = payload
-            updated_ids.append(identifier)
-
-    if any(issue.severity == "ERROR" for issue in issues):
-        return ReconcileResult([], [], [], str(registry_state.aggregate_path), issues)
-
-    scanned_repo_names = {root.name for root in repo_roots}
-    for identifier in sorted(set(entries) - set(discovered)):
-        if entries[identifier].get("repo") in scanned_repo_names:
-            removed_ids.append(identifier)
-            entries.pop(identifier, None)
-
-    write_registry_state(registry_state, allocators=allocators, entries=entries)
-    return ReconcileResult(added_ids, updated_ids, removed_ids, str(registry_state.aggregate_path), issues)
+    drift = detect_registry_drift(
+        current_state,
+        derived_state,
+        aggregate_renderer=lambda allocators, entries: compile_candidate_aggregate(
+            allocators,
+            entries,
+            source_refs=scan_report.source_refs,
+        ),
+    )
+    return ReconciliationReport(
+        source_refs=scan_report.source_refs,
+        scope_summary=scope_summary,
+        artifact_issues=artifact_issues,
+        derived=derived_state,
+        drift=drift,
+    )
 
 
-def _family_key(identifier: str) -> str:
-    family, sequence = identifier.rsplit("-", 1)
-    if not sequence.isdigit():
-        raise ValueError(f"Identifier does not end with a numeric sequence: {identifier}")
-    return family
+def _ensure_deterministic_render(derived_state) -> list[Issue]:
+    issues: list[Issue] = []
+    rerendered = {
+        "allocators": render_candidate_artifact(
+            derived_state.allocators,
+            target_path="REGISTRIES/allocators.yaml",
+        ),
+        "aggregate": render_candidate_artifact(
+            derived_state.aggregate,
+            target_path="REGISTRIES/OVIS_FILE_REGISTRY.yaml",
+        ),
+    }
+    for identifier, payload in sorted(derived_state.entries.items()):
+        rerendered[f"entry:{identifier}"] = render_candidate_artifact(
+            payload,
+            target_path=f"REGISTRIES/entries/{identifier}.yaml",
+        )
+    first = {key: artifact.sha256 for key, artifact in derived_state.candidate_artifacts.items()}
+    second = {key: artifact.sha256 for key, artifact in rerendered.items()}
+    if first != second:
+        issues.append(Issue("ERROR", "reconcile", "Candidate rendering is not deterministic across repeated checks."))
+    return issues
+
+
+def _count_excluded(excluded_files) -> dict[str, int]:
+    counts: dict[str, int] = {}
+    for item in excluded_files:
+        counts[item.reason] = counts.get(item.reason, 0) + 1
+    return counts
+
+
+def _error_report(source_refs: dict[str, str], scope_summary: dict[str, int], issues: list[Issue]) -> ReconciliationReport:
+    empty_drift = DriftReport(findings=[])
+    empty_derived = derive_registry_state(
+        [],
+        current_allocators={"families": {}},
+        build_candidate_artifact=render_candidate_artifact,
+        build_aggregate_payload=lambda allocators, entries: compile_candidate_aggregate(
+            allocators,
+            entries,
+            source_refs=source_refs,
+        ),
+        compute_hash=compute_derivation_hash,
+    )[0]
+    assert empty_derived is not None
+    return ReconciliationReport(
+        source_refs=source_refs,
+        scope_summary=scope_summary,
+        artifact_issues=issues,
+        derived=empty_derived,
+        drift=empty_drift,
+    )

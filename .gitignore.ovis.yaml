@@ -1,0 +1,14 @@
+id: CONFIG-RUN-0002
+title: OVIS Runtime Git Ignore Rules
+type: CONFIG
+status: active
+authority: operational
+version: '0.1'
+layer: runtime
+domain: run
+repo: ovis-runtime
+path: .gitignore
+owner: Owen Vitae
+created: '2026-03-21'
+last_updated: '2026-03-21'
+registry: ovis-blueprint/REGISTRIES/entries/CONFIG-RUN-0002.yaml

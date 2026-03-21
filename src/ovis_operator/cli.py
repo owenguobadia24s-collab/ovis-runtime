@@ -32,7 +32,7 @@ from ovis_branch import BranchLifecycleManager, JsonFileBranchStore
 from ovis_branch_compaction import BranchCompactionExecutor, CompactionHooks, CompactionTriggerClass
 from ovis_event_log import FileEventWriter
 from ovis_loop import LoopApprovalInput, LoopExecutionMode, LoopRequest, LoopSignalInput, RecursiveLoopRunner
-from ovis_metadata import init_file, reconcile_workspace, scan_workspace
+from ovis_metadata import init_file, normalize_workspace, reconcile_workspace, scan_workspace
 from ovis_responses_runtime import (
     OpenAIResponsesProviderAdapter,
     RuntimeAdapterConfig,
@@ -115,7 +115,17 @@ def _build_parser() -> argparse.ArgumentParser:
 
     metadata_reconcile = metadata_subparsers.add_parser("reconcile", parents=[common])
     _add_metadata_arguments(metadata_reconcile)
+    metadata_reconcile.add_argument(
+        "--include-candidates",
+        choices=["summary", "full"],
+        default="summary",
+        help="Include candidate registry payloads in summary or full form.",
+    )
     metadata_reconcile.set_defaults(func=_handle_metadata_reconcile)
+
+    metadata_normalize = metadata_subparsers.add_parser("normalize", parents=[common])
+    _add_metadata_arguments(metadata_normalize)
+    metadata_normalize.set_defaults(func=_handle_metadata_normalize)
 
     metadata_init = metadata_subparsers.add_parser("init-file", parents=[common])
     metadata_init.add_argument("--repo", required=True)
@@ -178,6 +188,15 @@ def _add_metadata_arguments(parser: argparse.ArgumentParser) -> None:
         "--allow-legacy",
         action="store_true",
         help="Allow legacy metadata formats when the migration phase permits them.",
+    )
+    parser.add_argument(
+        "--source-ref",
+        default="HEAD",
+        help="Git ref to scan for committed metadata. Defaults to HEAD.",
+    )
+    parser.add_argument(
+        "--exclusion-manifest",
+        help="Path to the normalization exclusion manifest.",
     )
 
 
@@ -272,10 +291,13 @@ def _handle_compact(args: argparse.Namespace) -> int:
 
 def _handle_metadata_validate(args: argparse.Namespace) -> int:
     repo_roots = _resolve_metadata_repo_roots(args.repo_root, args.root)
+    exclusion_manifest = _resolve_optional_exclusion_manifest(args.exclusion_manifest, args.blueprint_root, repo_roots[0])
     report = scan_workspace(
         repo_roots,
         migration_phase=args.migration_phase,
         allow_legacy=bool(args.allow_legacy),
+        source_ref=args.source_ref,
+        exclusion_manifest=exclusion_manifest,
     )
     _write_output(report.as_dict(), as_json=args.json)
     return 1 if any(issue.severity == "ERROR" for issue in report.issues) else 0
@@ -283,10 +305,13 @@ def _handle_metadata_validate(args: argparse.Namespace) -> int:
 
 def _handle_metadata_scan(args: argparse.Namespace) -> int:
     repo_roots = _resolve_metadata_repo_roots(args.repo_root, args.root)
+    exclusion_manifest = _resolve_optional_exclusion_manifest(args.exclusion_manifest, args.blueprint_root, repo_roots[0])
     report = scan_workspace(
         repo_roots,
         migration_phase=args.migration_phase,
         allow_legacy=bool(args.allow_legacy),
+        source_ref=args.source_ref,
+        exclusion_manifest=exclusion_manifest,
     )
     _write_output(report.as_dict(), as_json=args.json)
     return 0
@@ -295,14 +320,36 @@ def _handle_metadata_scan(args: argparse.Namespace) -> int:
 def _handle_metadata_reconcile(args: argparse.Namespace) -> int:
     repo_roots = _resolve_metadata_repo_roots(args.repo_root, args.root)
     blueprint_root = _resolve_blueprint_root(args.blueprint_root, repo_roots[0])
+    exclusion_manifest = _resolve_required_exclusion_manifest(args.exclusion_manifest, blueprint_root)
     result = reconcile_workspace(
         repo_roots,
         blueprint_root=blueprint_root,
+        exclusion_manifest=exclusion_manifest,
+        source_ref=args.source_ref,
+        include_candidates=getattr(args, "include_candidates", "summary"),
+        migration_phase=args.migration_phase,
+        allow_legacy=bool(args.allow_legacy),
+    )
+    _write_output(result.as_dict(include_candidates=args.include_candidates), as_json=args.json)
+    return 1 if any(issue.severity == "ERROR" for issue in result.artifact_issues) else 0
+
+
+def _handle_metadata_normalize(args: argparse.Namespace) -> int:
+    repo_roots = _resolve_metadata_repo_roots(args.repo_root, args.root)
+    blueprint_root = _resolve_blueprint_root(args.blueprint_root, repo_roots[0])
+    exclusion_manifest = _resolve_required_exclusion_manifest(args.exclusion_manifest, blueprint_root)
+    result = normalize_workspace(
+        repo_roots,
+        blueprint_root=blueprint_root,
+        exclusion_manifest=exclusion_manifest,
+        source_ref=args.source_ref,
         migration_phase=args.migration_phase,
         allow_legacy=bool(args.allow_legacy),
     )
     _write_output(result.as_dict(), as_json=args.json)
-    return 1 if any(issue.severity == "ERROR" for issue in result.issues) else 0
+    has_errors = any(issue.severity == "ERROR" for issue in result.precondition_issues)
+    has_errors = has_errors or any(issue.severity == "ERROR" for issue in result.post_write_validation_issues)
+    return 1 if has_errors else 0
 
 
 def _handle_metadata_init_file(args: argparse.Namespace) -> int:
@@ -564,6 +611,25 @@ def _resolve_blueprint_root(explicit_blueprint_root: str | None, reference_root:
     if explicit_blueprint_root:
         return Path(explicit_blueprint_root).resolve()
     return (reference_root.parent / "ovis-blueprint").resolve()
+
+
+def _resolve_optional_exclusion_manifest(
+    explicit_manifest: str | None,
+    explicit_blueprint_root: str | None,
+    reference_root: Path,
+) -> Path | None:
+    if explicit_manifest:
+        return Path(explicit_manifest).resolve()
+    candidate = _resolve_blueprint_root(explicit_blueprint_root, reference_root) / "POLICIES" / "REGISTRY_NORMALIZATION_EXCLUSIONS.yaml"
+    if candidate.exists():
+        return candidate
+    return None
+
+
+def _resolve_required_exclusion_manifest(explicit_manifest: str | None, blueprint_root: Path) -> Path:
+    if explicit_manifest:
+        return Path(explicit_manifest).resolve()
+    return (blueprint_root / "POLICIES" / "REGISTRY_NORMALIZATION_EXCLUSIONS.yaml").resolve()
 
 
 def _exception_message(exc: Exception) -> str:

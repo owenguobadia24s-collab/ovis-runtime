@@ -1,0 +1,20 @@
+name: ovis-metadata
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: ${{ github.repository_owner }}/ovis-blueprint
+          path: ovis-blueprint
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install .
+      - run: ovis metadata validate --repo-root . --blueprint-root ./ovis-blueprint --json
