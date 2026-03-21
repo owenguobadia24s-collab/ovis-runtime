@@ -1,3 +1,23 @@
+# ---
+# id: MODULE-RUNTIME-0009
+# title: Types Module
+# type: MODULE
+# status: active
+# authority: operational
+# version: '0.1'
+# layer: runtime
+# domain: runtime
+# repo: ovis-runtime
+# path: src/ovis_responses_runtime/types.py
+# owner: Owen Vitae
+# created: '2026-03-21'
+# last_updated: '2026-03-21'
+# registry: ovis-blueprint/REGISTRIES/entries/MODULE-RUNTIME-0009.yaml
+# module_id: MOD-RUNTIME-GATEWAY-0001
+# module_slug: runtime_gateway
+# system_id: SYS-KERNEL-0001
+# system_slug: ovis_kernel
+# ---
 """Shared request and response types for the runtime adapter scaffold."""
 
 from __future__ import annotations

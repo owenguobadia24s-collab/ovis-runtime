@@ -1,3 +1,23 @@
+# ---
+# id: MODULE-RUNTIME-0004
+# title: Continuation Module
+# type: MODULE
+# status: active
+# authority: operational
+# version: '0.1'
+# layer: runtime
+# domain: runtime
+# repo: ovis-runtime
+# path: src/ovis_responses_runtime/continuation.py
+# owner: Owen Vitae
+# created: '2026-03-21'
+# last_updated: '2026-03-21'
+# registry: ovis-blueprint/REGISTRIES/entries/MODULE-RUNTIME-0004.yaml
+# module_id: MOD-RUNTIME-GATEWAY-0001
+# module_slug: runtime_gateway
+# system_id: SYS-KERNEL-0001
+# system_slug: ovis_kernel
+# ---
 """Explicit continuation helpers for the runtime scaffold."""
 
 from __future__ import annotations

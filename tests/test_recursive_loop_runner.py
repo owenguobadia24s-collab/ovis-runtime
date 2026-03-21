@@ -1,3 +1,23 @@
+# ---
+# id: TEST-LOOP-0001
+# title: Test Recursive Loop Runner Test
+# type: TEST
+# status: active
+# authority: operational
+# version: '0.1'
+# layer: runtime
+# domain: loop
+# repo: ovis-runtime
+# path: tests/test_recursive_loop_runner.py
+# owner: Owen Vitae
+# created: '2026-03-21'
+# last_updated: '2026-03-21'
+# registry: ovis-blueprint/REGISTRIES/entries/TEST-LOOP-0001.yaml
+# module_id: MOD-PLANNING-EXECUTION-LOOP-0001
+# module_slug: planning_execution_loop
+# system_id: SYS-KERNEL-0001
+# system_slug: ovis_kernel
+# ---
 from pathlib import Path
 import sys
 

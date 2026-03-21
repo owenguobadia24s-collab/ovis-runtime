@@ -1,3 +1,23 @@
+# ---
+# id: TEST-COMPACTION-0005
+# title: Test Compaction Validation Test
+# type: TEST
+# status: active
+# authority: operational
+# version: '0.1'
+# layer: runtime
+# domain: compaction
+# repo: ovis-runtime
+# path: tests/test_compaction_validation.py
+# owner: Owen Vitae
+# created: '2026-03-21'
+# last_updated: '2026-03-21'
+# registry: ovis-blueprint/REGISTRIES/entries/TEST-COMPACTION-0005.yaml
+# module_id: MOD-BRANCH-COMPACTION-0001
+# module_slug: branch_compaction
+# system_id: SYS-KERNEL-0001
+# system_slug: ovis_kernel
+# ---
 from datetime import UTC, datetime
 from pathlib import Path
 import sys

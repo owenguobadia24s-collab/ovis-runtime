@@ -1,3 +1,23 @@
+# ---
+# id: TEST-GATEWAY-0006
+# title: Test Tool Policy Hooks Test
+# type: TEST
+# status: active
+# authority: operational
+# version: '0.1'
+# layer: runtime
+# domain: gateway
+# repo: ovis-runtime
+# path: tests/test_tool_policy_hooks.py
+# owner: Owen Vitae
+# created: '2026-03-21'
+# last_updated: '2026-03-21'
+# registry: ovis-blueprint/REGISTRIES/entries/TEST-GATEWAY-0006.yaml
+# module_id: MOD-TOOL-GATEWAY-0001
+# module_slug: tool_gateway
+# system_id: SYS-INTEGRATION-0001
+# system_slug: integration_bridge
+# ---
 from pathlib import Path
 import sys
 

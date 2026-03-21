@@ -1,3 +1,23 @@
+# ---
+# id: TEST-EVENT-0004
+# title: Test Event Validation Test
+# type: TEST
+# status: active
+# authority: operational
+# version: '0.1'
+# layer: runtime
+# domain: event
+# repo: ovis-runtime
+# path: tests/test_event_validation.py
+# owner: Owen Vitae
+# created: '2026-03-21'
+# last_updated: '2026-03-21'
+# registry: ovis-blueprint/REGISTRIES/entries/TEST-EVENT-0004.yaml
+# module_id: MOD-EVENT-LOG-0001
+# module_slug: event_log
+# system_id: SYS-KERNEL-0001
+# system_slug: ovis_kernel
+# ---
 from datetime import UTC, datetime
 from pathlib import Path
 import sys

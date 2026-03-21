@@ -1,0 +1,18 @@
+id: MANIFEST-GOV-0002
+title: Runtime Metadata Workflow
+type: MANIFEST
+status: active
+authority: operational
+version: '0.1'
+layer: runtime
+domain: gov
+repo: ovis-runtime
+path: .github/workflows/ovis-metadata.yml
+owner: Owen Vitae
+created: '2026-03-21'
+last_updated: '2026-03-21'
+registry: ovis-blueprint/REGISTRIES/entries/MANIFEST-GOV-0002.yaml
+module_id: MOD-META-SCHEMA-POLICY-0001
+module_slug: meta_schema_policy
+system_id: SYS-METADATA-0001
+system_slug: metadata_system

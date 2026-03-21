@@ -1,3 +1,26 @@
+# ---
+# id: MODULE-IDS-0001
+# title: Ovis Ids Package Module
+# type: MODULE
+# status: active
+# authority: operational
+# version: '0.1'
+# layer: runtime
+# domain: ids
+# repo: ovis-runtime
+# path: src/ovis_ids/__init__.py
+# owner: Owen Vitae
+# created: '2026-03-21'
+# last_updated: '2026-03-21'
+# registry: ovis-blueprint/REGISTRIES/entries/MODULE-IDS-0001.yaml
+# module_id: MOD-WORK-OBJECT-REGISTRY-0001
+# module_slug: work_object_registry
+# system_id: SYS-KERNEL-0001
+# system_slug: ovis_kernel
+# related_module_ids:
+# - MOD-BRANCH-CONTINUITY-0001
+# - MOD-EVENT-LOG-0001
+# ---
 """Authoritative shared ID aliases and generators for OVIS."""
 
 from __future__ import annotations

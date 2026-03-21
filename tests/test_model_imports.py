@@ -1,3 +1,23 @@
+# ---
+# id: TEST-STATE-0003
+# title: Test Model Imports Test
+# type: TEST
+# status: active
+# authority: operational
+# version: '0.1'
+# layer: runtime
+# domain: state
+# repo: ovis-runtime
+# path: tests/test_model_imports.py
+# owner: Owen Vitae
+# created: '2026-03-21'
+# last_updated: '2026-03-21'
+# registry: ovis-blueprint/REGISTRIES/entries/TEST-STATE-0003.yaml
+# module_id: MOD-WORK-OBJECT-REGISTRY-0001
+# module_slug: work_object_registry
+# system_id: SYS-KERNEL-0001
+# system_slug: ovis_kernel
+# ---
 from pathlib import Path
 import sys
 

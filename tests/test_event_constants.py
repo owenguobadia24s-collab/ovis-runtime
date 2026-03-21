@@ -1,3 +1,23 @@
+# ---
+# id: TEST-EVENT-0001
+# title: Test Event Constants Test
+# type: TEST
+# status: active
+# authority: operational
+# version: '0.1'
+# layer: runtime
+# domain: event
+# repo: ovis-runtime
+# path: tests/test_event_constants.py
+# owner: Owen Vitae
+# created: '2026-03-21'
+# last_updated: '2026-03-21'
+# registry: ovis-blueprint/REGISTRIES/entries/TEST-EVENT-0001.yaml
+# module_id: MOD-EVENT-LOG-0001
+# module_slug: event_log
+# system_id: SYS-KERNEL-0001
+# system_slug: ovis_kernel
+# ---
 from pathlib import Path
 import sys
 

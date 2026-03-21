@@ -1,3 +1,23 @@
+# ---
+# id: MODULE-LOOP-0002
+# title: Runner Module
+# type: MODULE
+# status: active
+# authority: operational
+# version: '0.1'
+# layer: runtime
+# domain: loop
+# repo: ovis-runtime
+# path: src/ovis_loop/runner.py
+# owner: Owen Vitae
+# created: '2026-03-21'
+# last_updated: '2026-03-21'
+# registry: ovis-blueprint/REGISTRIES/entries/MODULE-LOOP-0002.yaml
+# module_id: MOD-PLANNING-EXECUTION-LOOP-0001
+# module_slug: planning_execution_loop
+# system_id: SYS-KERNEL-0001
+# system_slug: ovis_kernel
+# ---
 """Thin orchestration runner for one governed branch cycle."""
 
 from __future__ import annotations

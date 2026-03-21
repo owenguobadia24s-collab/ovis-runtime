@@ -1,3 +1,23 @@
+# ---
+# id: TEST-RUNTIME-0004
+# title: Test Runtime Config Test
+# type: TEST
+# status: active
+# authority: operational
+# version: '0.1'
+# layer: runtime
+# domain: runtime
+# repo: ovis-runtime
+# path: tests/test_runtime_config.py
+# owner: Owen Vitae
+# created: '2026-03-21'
+# last_updated: '2026-03-21'
+# registry: ovis-blueprint/REGISTRIES/entries/TEST-RUNTIME-0004.yaml
+# module_id: MOD-RUNTIME-GATEWAY-0001
+# module_slug: runtime_gateway
+# system_id: SYS-KERNEL-0001
+# system_slug: ovis_kernel
+# ---
 from pathlib import Path
 import sys
 

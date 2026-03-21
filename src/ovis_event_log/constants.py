@@ -1,3 +1,23 @@
+# ---
+# id: MODULE-EVENT-0005
+# title: Constants Module
+# type: MODULE
+# status: active
+# authority: operational
+# version: '0.1'
+# layer: runtime
+# domain: event
+# repo: ovis-runtime
+# path: src/ovis_event_log/constants.py
+# owner: Owen Vitae
+# created: '2026-03-21'
+# last_updated: '2026-03-21'
+# registry: ovis-blueprint/REGISTRIES/entries/MODULE-EVENT-0005.yaml
+# module_id: MOD-EVENT-LOG-0001
+# module_slug: event_log
+# system_id: SYS-KERNEL-0001
+# system_slug: ovis_kernel
+# ---
 """Canonical event family groupings derived from the shared EventType enum."""
 
 from __future__ import annotations

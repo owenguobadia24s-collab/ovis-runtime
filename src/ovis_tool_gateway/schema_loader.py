@@ -1,3 +1,23 @@
+# ---
+# id: MODULE-GATEWAY-0008
+# title: Schema Loader Module
+# type: MODULE
+# status: active
+# authority: operational
+# version: '0.1'
+# layer: runtime
+# domain: gateway
+# repo: ovis-runtime
+# path: src/ovis_tool_gateway/schema_loader.py
+# owner: Owen Vitae
+# created: '2026-03-21'
+# last_updated: '2026-03-21'
+# registry: ovis-blueprint/REGISTRIES/entries/MODULE-GATEWAY-0008.yaml
+# module_id: MOD-TOOL-GATEWAY-0001
+# module_slug: tool_gateway
+# system_id: SYS-INTEGRATION-0001
+# system_slug: integration_bridge
+# ---
 """Schema loader scaffolds for the OVIS tool gateway."""
 
 from __future__ import annotations

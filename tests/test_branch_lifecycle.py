@@ -1,3 +1,23 @@
+# ---
+# id: TEST-BRANCH-0002
+# title: Test Branch Lifecycle Test
+# type: TEST
+# status: active
+# authority: operational
+# version: '0.1'
+# layer: runtime
+# domain: branch
+# repo: ovis-runtime
+# path: tests/test_branch_lifecycle.py
+# owner: Owen Vitae
+# created: '2026-03-21'
+# last_updated: '2026-03-21'
+# registry: ovis-blueprint/REGISTRIES/entries/TEST-BRANCH-0002.yaml
+# module_id: MOD-BRANCH-CONTINUITY-0001
+# module_slug: branch_continuity
+# system_id: SYS-KERNEL-0001
+# system_slug: ovis_kernel
+# ---
 from datetime import UTC, datetime
 from pathlib import Path
 import sys

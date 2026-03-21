@@ -1,3 +1,25 @@
+# ---
+# id: MODULE-BRANCH-0003
+# title: Store Module
+# type: MODULE
+# status: active
+# authority: operational
+# version: '0.1'
+# layer: runtime
+# domain: branch
+# repo: ovis-runtime
+# path: src/ovis_branch/store.py
+# owner: Owen Vitae
+# created: '2026-03-21'
+# last_updated: '2026-03-21'
+# registry: ovis-blueprint/REGISTRIES/entries/MODULE-BRANCH-0003.yaml
+# module_id: MOD-BRANCH-CONTINUITY-0001
+# module_slug: branch_continuity
+# system_id: SYS-KERNEL-0001
+# system_slug: ovis_kernel
+# related_module_ids:
+# - MOD-EVENT-LOG-0001
+# ---
 """In-memory store for branch lifecycle state."""
 
 from __future__ import annotations

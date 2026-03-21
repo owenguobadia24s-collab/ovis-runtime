@@ -1,3 +1,23 @@
+# ---
+# id: MODULE-RUNTIME-0001
+# title: Ovis Responses Runtime Package Module
+# type: MODULE
+# status: active
+# authority: operational
+# version: '0.1'
+# layer: runtime
+# domain: runtime
+# repo: ovis-runtime
+# path: src/ovis_responses_runtime/__init__.py
+# owner: Owen Vitae
+# created: '2026-03-21'
+# last_updated: '2026-03-21'
+# registry: ovis-blueprint/REGISTRIES/entries/MODULE-RUNTIME-0001.yaml
+# module_id: MOD-RUNTIME-GATEWAY-0001
+# module_slug: runtime_gateway
+# system_id: SYS-KERNEL-0001
+# system_slug: ovis_kernel
+# ---
 """Canonical Responses runtime adapter scaffold for OVIS."""
 
 from .adapter import PlaceholderResponsesRuntimeAdapter, ResponsesRuntimeAdapter, RuntimeAdapter
