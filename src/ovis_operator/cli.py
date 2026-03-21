@@ -1,3 +1,19 @@
+# ---
+# id: MODULE-OPERATOR-0002
+# title: OVIS Operator CLI
+# type: MODULE
+# status: active
+# authority: operational
+# version: '0.1'
+# layer: runtime
+# domain: operator
+# repo: ovis-runtime
+# path: src/ovis_operator/cli.py
+# owner: Owen Vitae
+# created: '2026-03-21'
+# last_updated: '2026-03-21'
+# registry: ovis-blueprint/REGISTRIES/entries/MODULE-OPERATOR-0002.yaml
+# ---
 """Thin operator CLI over canonical OVIS subsystems."""
 
 from __future__ import annotations
@@ -16,6 +32,7 @@ from ovis_branch import BranchLifecycleManager, JsonFileBranchStore
 from ovis_branch_compaction import BranchCompactionExecutor, CompactionHooks, CompactionTriggerClass
 from ovis_event_log import FileEventWriter
 from ovis_loop import LoopApprovalInput, LoopExecutionMode, LoopRequest, LoopSignalInput, RecursiveLoopRunner
+from ovis_metadata import init_file, reconcile_workspace, scan_workspace
 from ovis_responses_runtime import (
     OpenAIResponsesProviderAdapter,
     RuntimeAdapterConfig,
@@ -85,6 +102,40 @@ def _build_parser() -> argparse.ArgumentParser:
     compact.add_argument("--correlation-id")
     compact.set_defaults(func=_handle_compact)
 
+    metadata_parser = subparsers.add_parser("metadata", parents=[common])
+    metadata_subparsers = metadata_parser.add_subparsers(dest="metadata_command", required=True)
+
+    metadata_validate = metadata_subparsers.add_parser("validate", parents=[common])
+    _add_metadata_arguments(metadata_validate)
+    metadata_validate.set_defaults(func=_handle_metadata_validate)
+
+    metadata_scan = metadata_subparsers.add_parser("scan", parents=[common])
+    _add_metadata_arguments(metadata_scan)
+    metadata_scan.set_defaults(func=_handle_metadata_scan)
+
+    metadata_reconcile = metadata_subparsers.add_parser("reconcile", parents=[common])
+    _add_metadata_arguments(metadata_reconcile)
+    metadata_reconcile.set_defaults(func=_handle_metadata_reconcile)
+
+    metadata_init = metadata_subparsers.add_parser("init-file", parents=[common])
+    metadata_init.add_argument("--repo", required=True)
+    metadata_init.add_argument("--path", required=True)
+    metadata_init.add_argument("--title", required=True)
+    metadata_init.add_argument("--type", required=True, dest="metadata_type")
+    metadata_init.add_argument("--layer", required=True)
+    metadata_init.add_argument("--domain", required=True)
+    metadata_init.add_argument("--owner")
+    metadata_init.add_argument("--document-class", action="store_true")
+    metadata_init.add_argument("--sidecar", action="store_true")
+    metadata_init.add_argument("--id")
+    metadata_init.add_argument("--trusted-id-authority", action="store_true")
+    metadata_init.add_argument("--module-id")
+    metadata_init.add_argument("--module-slug")
+    metadata_init.add_argument("--system-id")
+    metadata_init.add_argument("--system-slug")
+    metadata_init.add_argument("--related-module-id", action="append")
+    metadata_init.set_defaults(func=_handle_metadata_init_file)
+
     run = subparsers.add_parser("run", parents=[common])
     run.add_argument("--objective", required=True)
     run.add_argument("--mode", choices=[mode.value for mode in LoopExecutionMode])
@@ -105,6 +156,29 @@ def _build_parser() -> argparse.ArgumentParser:
     run.set_defaults(func=_handle_run)
 
     return parser
+
+
+def _add_metadata_arguments(parser: argparse.ArgumentParser) -> None:
+    parser.add_argument(
+        "--repo-root",
+        action="append",
+        help="Repo root to validate. Defaults to the current working directory.",
+    )
+    parser.add_argument(
+        "--blueprint-root",
+        help="Canonical blueprint root. Defaults to ../ovis-blueprint relative to the current root.",
+    )
+    parser.add_argument(
+        "--migration-phase",
+        choices=["M1", "M2", "M3"],
+        default="M2",
+        help="Migration compatibility phase.",
+    )
+    parser.add_argument(
+        "--allow-legacy",
+        action="store_true",
+        help="Allow legacy metadata formats when the migration phase permits them.",
+    )
 
 
 def _handle_signal_create(args: argparse.Namespace) -> int:
@@ -193,6 +267,65 @@ def _handle_compact(args: argparse.Namespace) -> int:
         "source_range": response.output.source_range,
     }
     _write_output(summary, as_json=args.json)
+    return 0
+
+
+def _handle_metadata_validate(args: argparse.Namespace) -> int:
+    repo_roots = _resolve_metadata_repo_roots(args.repo_root, args.root)
+    report = scan_workspace(
+        repo_roots,
+        migration_phase=args.migration_phase,
+        allow_legacy=bool(args.allow_legacy),
+    )
+    _write_output(report.as_dict(), as_json=args.json)
+    return 1 if any(issue.severity == "ERROR" for issue in report.issues) else 0
+
+
+def _handle_metadata_scan(args: argparse.Namespace) -> int:
+    repo_roots = _resolve_metadata_repo_roots(args.repo_root, args.root)
+    report = scan_workspace(
+        repo_roots,
+        migration_phase=args.migration_phase,
+        allow_legacy=bool(args.allow_legacy),
+    )
+    _write_output(report.as_dict(), as_json=args.json)
+    return 0
+
+
+def _handle_metadata_reconcile(args: argparse.Namespace) -> int:
+    repo_roots = _resolve_metadata_repo_roots(args.repo_root, args.root)
+    blueprint_root = _resolve_blueprint_root(args.blueprint_root, repo_roots[0])
+    result = reconcile_workspace(
+        repo_roots,
+        blueprint_root=blueprint_root,
+        migration_phase=args.migration_phase,
+        allow_legacy=bool(args.allow_legacy),
+    )
+    _write_output(result.as_dict(), as_json=args.json)
+    return 1 if any(issue.severity == "ERROR" for issue in result.issues) else 0
+
+
+def _handle_metadata_init_file(args: argparse.Namespace) -> int:
+    result = init_file(
+        root=_root_path(args.root),
+        repo=args.repo,
+        relative_path=args.path,
+        title=args.title,
+        metadata_type=args.metadata_type,
+        layer=args.layer,
+        domain=args.domain,
+        owner=args.owner,
+        document_class=bool(args.document_class),
+        sidecar=bool(args.sidecar),
+        identifier=args.id,
+        trusted_id_authority=bool(args.trusted_id_authority),
+        module_id=args.module_id,
+        module_slug=args.module_slug,
+        system_id=args.system_id,
+        system_slug=args.system_slug,
+        related_module_ids=list(args.related_module_id or []),
+    )
+    _write_output(result.as_dict(), as_json=args.json)
     return 0
 
 
@@ -419,6 +552,18 @@ def _sha256_text(text: str) -> str:
 
 def _root_path(raw_root: str) -> Path:
     return Path(raw_root).resolve()
+
+
+def _resolve_metadata_repo_roots(raw_repo_roots: list[str] | None, default_root: str) -> list[Path]:
+    if raw_repo_roots:
+        return [Path(value).resolve() for value in raw_repo_roots]
+    return [Path(default_root).resolve()]
+
+
+def _resolve_blueprint_root(explicit_blueprint_root: str | None, reference_root: Path) -> Path:
+    if explicit_blueprint_root:
+        return Path(explicit_blueprint_root).resolve()
+    return (reference_root.parent / "ovis-blueprint").resolve()
 
 
 def _exception_message(exc: Exception) -> str:
