@@ -1,0 +1,1229 @@
+{
+  "artifact_issues": [],
+  "derived": {
+    "aggregate_entry_count": 185,
+    "allocator_family_count": 37,
+    "candidate_hashes": {
+      "aggregate": "6513333ff066fbd5cf2edda4023073f082653c21a676f534481e2e5cea81da75",
+      "allocators": "b4f0254bd9d7d5cf350fb7659fd0b04b3cabc35a57936c0d7864513c395dadb1",
+      "entry:ADR-ARC-0001": "10cfc3b7a202b58fec3831b748657592b97bfdc04326f2ee45dbabcbb04d344d",
+      "entry:ADR-ARC-0002": "9329b05d8c060c346bd2e091bacc74cc37e165f54e26bb6b64438e47ef4edec8",
+      "entry:ADR-ARC-0003": "3b79ad2c0f8ecc85ab941095221e8b462e4e90add53152e1d5cbb4c288664e4a",
+      "entry:ADR-ARC-0004": "88cdd37b1e0ca57aac4b54806d7ad0fb357bdc4dbafa3ee30de15f3c15dca0f9",
+      "entry:ADR-ARC-0005": "768496fb8e79bc31bbeec5e1fa14d9a2b25a2ff2550f0da22dc3352cda847bc9",
+      "entry:ADR-ARC-0006": "9c916d523b97f75c7d74f3fbcab4a4ced5d5985103516f82956da28c4294a4cf",
+      "entry:ADR-ARC-0007": "e85ecfdd86415fd3300e9ab1cb173967b791529cd2aa54c0ce750d969aeb26b1",
+      "entry:ADR-ARC-0008": "a423794864e222fc21d269181bfcd0752baf15b2f1a166cb18d21c456c8766d0",
+      "entry:ADR-ARC-0009": "56f74c3ea0ee19c910cb7962b6ac4c490f46c92f67824ec0c57869c55e37f698",
+      "entry:ADR-ARC-0010": "673e5ec602930abdf278fc7dace4409fee13c2f04e57e30ed551df179998e888",
+      "entry:ADR-ARC-0011": "ab4eb0e2e16d70de8448d965e5369a4a27d1c958734b46e0694448369efc64a8",
+      "entry:ADR-ARC-0012": "a3b8e26c6fb20a4a25697e6c136f7718f4c9e7ebf5f15e6f66577a2773f6fb02",
+      "entry:CJ-GOV-0001": "b85a3e472f5f32bf7e51cee764b4dd24571ad8fde4bda85485bde893c38e8a66",
+      "entry:CJ-IA-0001": "cdbf8315212d925bed1e62026ead13c227fd75cc371bd9e4e099f4556288c009",
+      "entry:CJ-STRUCTURE-0001": "efec5cb44a3a55fa0135cc590c47bb913e4db9860a8eca3a52a7576671803798",
+      "entry:CJ-STRUCTURE-0002": "fea8ee7ae99c13f12464d6bce4c78464133fa807fb8df1b53dbdd4d354345188",
+      "entry:CJ-STRUCTURE-0003": "168f0a9fc8609546d5fee0b30af751b3050c961d55fc2701c8a7282b4ba7b58c",
+      "entry:CJ-STRUCTURE-0004": "b448d3c0b09b82cbe9e068eab771e46978ee77b25bc519d5128fcf3a47e8f57c",
+      "entry:CJ-STRUCTURE-0005": "eee31d921db65ee5b35da2e5272ede3e11d7316275773d919a3a5f283f0f3a0e",
+      "entry:CONFIG-RUN-0002": "e08a9ddc34d42b52a92c25eda00ad6219e8b0f9d993139586e946daad49a01b5",
+      "entry:DOC-KNOW-0001": "cd99d7b37fd1184b6d471c632fceca554f606e46f99e33c3d848c6d4328bc109",
+      "entry:DOC-RUN-0003": "37af80a417c088873d7da5624ace2448da401742431dfcb733d17c92245d9787",
+      "entry:DOC-STRUCTURE-0001": "64fb8b7a46b51939d06f314c6847c01e8fee02316ef49e1133abc5e95f08bea4",
+      "entry:DOC-STRUCTURE-0002": "32311aaa2847461f3013e5beb40198a2d6ae1af87f5650410042c3386f4185ba",
+      "entry:DOC-STRUCTURE-0003": "9df8f147cd7335a2a6654c951bb1bdf95fc3b4431b98e31fcc0ce42df9c72f0f",
+      "entry:DOC-STRUCTURE-0004": "398b67a51c4775fe49a7335f046ff6d1ecae630f46340d4d35ee2b9996e7e5ce",
+      "entry:DOC-VAL-0001": "b33170ca7f7e41d140bf7dee618d515079699537d64ccc5e000fb30ed861c4a8",
+      "entry:DOC-WF-0001": "930fc0de33772553320763df488a331251374245826235fa638708b5448e57c9",
+      "entry:MANIFEST-GOV-0001": "d1b44abe2beddea5f40c382a52908f84cc3ffce682104dc9e67c54299240aa3b",
+      "entry:MANIFEST-GOV-0002": "705068d6879f0f916b1e8c69080511f4ed6e58cfcc439d3d7d539486e2a6c3c2",
+      "entry:MANIFEST-GOV-0003": "9e86de6d004a0d7efd64291932a7741635c548b2450b7d4ebf7ffc26a46487d2",
+      "entry:MODULE-BRANCH-0001": "17dc02580f0be9588de257dffc3a75cb6d857fc374c0751cf2ecfedb5b89848b",
+      "entry:MODULE-BRANCH-0002": "50349c17b6ccd853f316f20badf21edaa02352d50ddf9a7b9e22652ac047ceae",
+      "entry:MODULE-BRANCH-0003": "68f602a1a074aaa82d4302b5dbc30c805a6b65633deefea637cee32a458a0e8e",
+      "entry:MODULE-BRANCH-0004": "8c6433439e6819d8654d35f95b04e0418e55744607bc54892c2557ceef570390",
+      "entry:MODULE-COMPACTION-0001": "dcb12d50f80d8424382dcf84b63d9bbe219c4ea6563fa60d48cc8f0961a2b8c8",
+      "entry:MODULE-COMPACTION-0002": "368d34fdaf21e1f74b42b77278524adce053344b68a0e4f26e5199c3c4513dd6",
+      "entry:MODULE-COMPACTION-0003": "2d420d661965b4d454e004e1aba1cd87fda7ed5abc04a74730787ebd38287ebc",
+      "entry:MODULE-COMPACTION-0004": "d17a02df9ab6386c20abc902a3f915acae70f120739987227adeee863a54814f",
+      "entry:MODULE-COMPACTION-0005": "25d042c486bfbf73ae08449bb55e26d5ce5aa6774b3d6bd2c82ff9d528700faf",
+      "entry:MODULE-COMPACTION-0006": "92ec02308344d66ded315c1d6713ca201c8214f2b623e48fa9d68d159c05e81f",
+      "entry:MODULE-COMPACTION-0007": "10da9542365099411735bd8668382239b0e4aa8502a5f354697fa9ca518444e5",
+      "entry:MODULE-COMPACTION-0008": "a5f505e7358965859a867ab05b2a586d781cd3998b95ad249970f17f1a7c9670",
+      "entry:MODULE-EVENT-0001": "f80b2c6f9409d85854cdf11f993594081bff77364c54c9ca31769a29f4b4951c",
+      "entry:MODULE-EVENT-0002": "cade1ca65698019e3dc1f016ce174dd30b8f3d89b0f1dc252ae2deb0b868b805",
+      "entry:MODULE-EVENT-0003": "0e8fc6616e68ff558f0f534c681ba041980a123c7fd60b7f599ab115cfa83446",
+      "entry:MODULE-EVENT-0004": "8ef6017abe05702e750dedab9ea66b96de425bc6263a81046bd21a4ffd02a317",
+      "entry:MODULE-EVENT-0005": "c44c4aaf4de9c2e2d50ab1799f6e3bc00285df5aa64134a68f6ed7ee4143da07",
+      "entry:MODULE-EVENT-0006": "1c0bd6bf27c075df9a85eca1537acadefe14cd01e27e143181dcbc0f6363b0fc",
+      "entry:MODULE-EVENT-0007": "e214158b90b4c2f617d56ee3b80c8fc7cf6df0c5da5246189edd178357166849",
+      "entry:MODULE-EVENT-0008": "00690303698586cd52e0c3af717094d4c1e8b70127df8e69e804994d4badc0f9",
+      "entry:MODULE-EVENT-0009": "23944d9ed25cfb236d4a73af2c5d54b9c90644a8b64136a8e516e1219b7d85bd",
+      "entry:MODULE-EVENT-0010": "6a02302c2f5b70d7ec64b29c0b118a815c6e718c39c83fbd01c523f51f6fb5dd",
+      "entry:MODULE-EVENT-0011": "17dfaf9acb5dfc228d8f5e089aab5e459d8b584be54d70a4cb9e305f2181f681",
+      "entry:MODULE-GATEWAY-0001": "1043ccc69dd10e7c12c1fbb6f50ac1780bc240658d9986487d3c05459e8d42cc",
+      "entry:MODULE-GATEWAY-0002": "79f06b0c480d9f3590982ffa1ba8ac9edc6f154bfbb7266df236e45d6f75034c",
+      "entry:MODULE-GATEWAY-0003": "f30216a0864dba97377c3908f2a38ceea68728e73e49da94bd25ea3531f319e5",
+      "entry:MODULE-GATEWAY-0004": "ee10d47cd82dace1175ca94a74e6c1e3892ae48b264ef04616e59f7989dfa9c1",
+      "entry:MODULE-GATEWAY-0005": "4162bcd97821ade257aa85a9a350dd293a747b705263558d0b066d543faa03a4",
+      "entry:MODULE-GATEWAY-0006": "c2ad95e1a4cb381746c6d706dd95fe0fab6731a6e3743bb23b541b79c50332db",
+      "entry:MODULE-GATEWAY-0007": "86e41fa0cdc4b336b9341e0fb5aea1087dbd278c1f94fc08c7500867f6cbe965",
+      "entry:MODULE-GATEWAY-0008": "1e7a15a687582f4d72279147eed1db975543bd81e0aad350a85d3f567e7e316d",
+      "entry:MODULE-GATEWAY-0009": "10758176e3d6ff62cb096999d286d38170f4d1185e3e2940bf637b8e52a4b371",
+      "entry:MODULE-GOV-0001": "5551e5b78f9012e59491cbbdbd0f27df97f762876a2baa5b62cf5f5d103ae334",
+      "entry:MODULE-GOV-0002": "eb3da77c99f180cd2846cc7fb76d684784d99a39a735c7c2f7c4ca1e16bbe385",
+      "entry:MODULE-GOV-0003": "99beeee1a29f0f1fa81888d3d5d7f99677f12edaae69303bdf82d38bb47b734e",
+      "entry:MODULE-GOV-0004": "dc939dae68b03c85c71b84199e8b2f22a6cb03c2c6c5d737932ef0b28c1ec7a9",
+      "entry:MODULE-GOV-0005": "ec762029c6d0b0e4b0d5738462af0a983d3eb7cd13cba76474b8eb37ab9ff067",
+      "entry:MODULE-GOV-0006": "06c6bcbd32b09da9f104861b9148f25278fdd673c61db53135de1d3cca1a6d33",
+      "entry:MODULE-GOV-0007": "0d151df433d4b2e43728279da19efd69a41a7f53109ffa6d397f3ad8934019ba",
+      "entry:MODULE-GOV-0008": "361c328910bd54a8f63c1ff4cc7acdfb9d7434b200d1d47d86f3c9b1ab75732c",
+      "entry:MODULE-GOV-0009": "cb53695eb464b428fa6ff51d5ad9f8f961d5b4fd5ef56c696a8f20b6c94aff96",
+      "entry:MODULE-GOV-0010": "a7afedd82fb87166c20c37f652d258b2381b5646fe7d3638c825a837416bad86",
+      "entry:MODULE-GOV-0011": "0f9eebd7726b861479b92658649580ffb3e0725670b01dce01a6a30f9335a944",
+      "entry:MODULE-GOV-0012": "6e49f06190490d2dd93607f240dcd5168611ddd88ad5dc42a25a26a18bf922d6",
+      "entry:MODULE-GOV-0013": "d5dbe684e45dd1faca3bc2271f66480400d63ebea6d0f83497742c2a17f46770",
+      "entry:MODULE-IDS-0001": "1c58b38e6f878bcaf1e30592671b5c32ee7588ffa167c2627e389795fb5e024b",
+      "entry:MODULE-LOOP-0001": "c71fdfb2b72709c4bcfd4dd3aa8ca5856d3d6e09593a6cae8456b9139150342e",
+      "entry:MODULE-LOOP-0002": "3f7d652a7c14140b694bfc0b86177787e6ea681c949e552121068f51ef9aa659",
+      "entry:MODULE-LOOP-0003": "d482c6f807265f6c7ab85bd7df210032fb909e078490a059c721ac81b926655e",
+      "entry:MODULE-OPERATOR-0002": "87b10ef31f6e6a00a22b852afe0b3dfbf38ed12efaff4fca82ddb0409fc56123",
+      "entry:MODULE-OPERATOR-0003": "ae4cd9de525f2a11af0de49c1cad7a019e99470b94a4f9703fe15e4561a4bb2d",
+      "entry:MODULE-OPERATOR-0004": "c0354e345393018cae51c6c3cd93f881373358e4d192181d7dedd0e6c93e2a7e",
+      "entry:MODULE-RUNTIME-0001": "7d8828c97357a77358d7312886a30a6df529495adc42c5a01532b9edeef91af0",
+      "entry:MODULE-RUNTIME-0002": "6b47b8370ca8f036dabc936f917a88d28c82a5470f1c7b27c94b1d667152cc82",
+      "entry:MODULE-RUNTIME-0003": "b39bfe7634e6342a15d619f884adfcedbc46f61d27f71a9041c1a9512d7b6d53",
+      "entry:MODULE-RUNTIME-0004": "05804b99acdadb2d2f7a40eaddd7fc1a6883da3445e5b304ba2467639720ac7b",
+      "entry:MODULE-RUNTIME-0005": "907edbd519b81268383dd801fdebc37ebc2ab3aceb5a1010e068cf79c8bb7943",
+      "entry:MODULE-RUNTIME-0006": "ee84ef840991d9aa5d5e7bd1fc8fde8820e418d74b78221f43cb78721f2a031e",
+      "entry:MODULE-RUNTIME-0007": "025e6407c108454b5ad7b8f8de7be5a7869feb28e0d4f993685555d97eed81cd",
+      "entry:MODULE-RUNTIME-0008": "eb5d30b0bcd92ef123141ad765b0c4cba54027f3173273db80500ac6c15e2bab",
+      "entry:MODULE-RUNTIME-0009": "aba95f9955f011fd30f2dc3114534e30aa8355d41c9f301ed8c6cadf2c992f01",
+      "entry:MODULE-STATE-0001": "08f62fd4de77de25cd8fea95dca045709b615e13a560251a6ebbc6c033d278e4",
+      "entry:MODULE-STATE-0002": "26f89b368e80efcaf18fbc1beacb56df32b0546f01b1c0f2e5c32da5bd408698",
+      "entry:MODULE-STATE-0003": "b7a81a260e9420c2d05792faaefef96092bfc3a2d1fd36cd3ed1d40598f53854",
+      "entry:MODULE-STATE-0004": "8bff843d6877692df59861a652097811f3f83f8c755b0ec5ae79f5459fb85632",
+      "entry:MODULE-STATE-0005": "d210b344fb2b550efe20762b5722def22050b00301e3257301c802040c8c6036",
+      "entry:MODULE-STATE-0006": "b9cd559d2324964e29c8eb2b09e2094e71448952a4b403e58fb838e1f29d52a4",
+      "entry:MODULE-STATE-0007": "e7e3605b2dd699d55a011b52f4eb63d83172c99f06501025c5a8fd82fafbe92d",
+      "entry:MODULE-STATE-0008": "d2c976158988c4461340ff6b7258f97be0015f7b24119b79b36d3b27fb7b5021",
+      "entry:MODULE-STATE-0009": "6eff7859cc49f83f19a983d0e017ee5c7a55762b362795a1db904d6204c1e7ed",
+      "entry:MODULE-STATE-0010": "b0eda616e4fe608710913a38fce4d03d62bf42f6643b137e0185cf99cbfe1cea",
+      "entry:MODULE-STATE-0011": "c3f059ebf7a75962d16fecfb2edff3637aec78e4994f7ee88d9f89e99c68e08d",
+      "entry:MODULE-STATE-0012": "4fc77961f9156b5216647b08459b34cf56844c64cae4f59790c1c225801bebd5",
+      "entry:MODULE-STATE-0013": "a4afcb33bf9c6b5283b9aebb7b629799ea136edc979f560f24a4f38173d76a78",
+      "entry:MODULE-STATE-0014": "fb2ddfe02421fc2c7e691d906199b86773b44ed43b5fe81d6a5c4b8d459a519d",
+      "entry:MODULE-STATE-0015": "d9d008ffae7d616337af9c89c7d7c59060342bd62c35f4849736a61195385232",
+      "entry:MODULE-STATE-0016": "6e83f4423291820ffffa6d9d5897bbc88a5087612175fe902e525d6aa30c71e1",
+      "entry:MODULE-STATE-0017": "7166ae7864c6abb92056c3229a340c4b520bf08f7f4f7bc6a54794a2a1230345",
+      "entry:MODULE-STATE-0018": "2e90887fb62b9c68dc38edd1297aeb21ba107b13c79e577cab7a4f3f4b80b764",
+      "entry:MODULE-STATE-0019": "1165e8e8fe0054bb7677375b3970d607be78a3fbfa0cf1b77dfd31c756f8c3ac",
+      "entry:POLICY-GOV-0001": "fbe8f75e0e512a9adee36ba73e9d284540de65882075755ce1c5b84aafce0d9f",
+      "entry:POLICY-GOV-0002": "d96c68ef2afd9458b54ca6158f73322236eccc4cb6f2475ec6f8b7982462776a",
+      "entry:REGISTRY-MODULE-0001": "23d08c4bead9cb0f31fd89e5517e2fb8f879368f044bce9f23f52c5f1a648217",
+      "entry:REGISTRY-MODULE-0002": "8ee8abf65b904d36c840c568bb892cf4e9037d22868e5a0e9e69b475eae30986",
+      "entry:REGISTRY-MODULE-0003": "c32deb10849f50abc3ca07daf5add2327ccdf875c82c15e9babc04835b51395b",
+      "entry:REGISTRY-MODULE-0004": "0f24285a730e08a886fb69a85cce34fa7f9d1a2be2918a8b71da1b7390d434f5",
+      "entry:REGISTRY-MODULE-0005": "489336bed7b3e03ed151ec576c1075edb82a001776330f8860c782dc425c9d3d",
+      "entry:REGISTRY-MODULE-0006": "c1d544d92b94edd27de0f6a77fa76d64522872cfad58f86f571a9eb4847a543d",
+      "entry:REGISTRY-MODULE-0007": "389fad6a7fd55ba235d4e4a82df11f7bcb0500ff2694602e147a3e47c19fdfd1",
+      "entry:REGISTRY-MODULE-0008": "97849b6f54b1ff70baa41bd9e24640a3bb2d46efe214e04bbcbcd8fa9c495cca",
+      "entry:REGISTRY-MODULE-0009": "6f7b67303a24e54ca427b48526c828e607af0ad1c83a1cf9b5b0226af157a3d2",
+      "entry:REGISTRY-MODULE-0010": "088d7e70010dfde23603cb7673b5ca77c189c502dd214f5896c0d78961a4d40f",
+      "entry:REGISTRY-MODULE-0011": "d42be1cfb59afa6e7c5f19ce8f32123eb43c05e2f9fbf11e0a89afc7b554eaa8",
+      "entry:REGISTRY-MODULE-0012": "def3c4a41b9b166d1a6d8c99b9de3fbf9cd2124a526a30a6f656376874ad8f01",
+      "entry:REGISTRY-MODULE-0013": "4647fea787a245a593094e5c37bd0f626d949efc98da3fa31cb1c2c8e5803739",
+      "entry:REGISTRY-MODULE-0014": "b2a2b08188e0d67110cdc5a5b6cbf59e02b1653be90d5e6491906cad29bb9117",
+      "entry:REGISTRY-MODULE-0015": "59602f0b5e1616f29be8544ad066ab49b910c6f87d290eed9bc1ef3f718fbe1b",
+      "entry:REGISTRY-MODULE-0016": "407f79daed9ebbc609e6177b1840c72cbf55b6785eeaa1983b9bc527a4d9d61d",
+      "entry:REGISTRY-MODULE-0017": "cadb3a2ad99812a18746519f2cb77ab6f2ec846f6f11a8ea008aec0a629bd06f",
+      "entry:REGISTRY-RELATION-0001": "befb57e31626423589374d4f793c9f3f544e7e62d66b0f9212996896b357c268",
+      "entry:REGISTRY-RELATION-0002": "23174e07370da33141e3d20694023b0420e83f4aeca5d7ffa9d76a58ca46fd72",
+      "entry:REGISTRY-RELATION-0003": "053da668eebe4c503f43954fe653602c8c9991075a68fd1b779e1d6b90ae1483",
+      "entry:REGISTRY-RELATION-0004": "3b056b3c6f66667bea82de390a9d78cf7a84d223d57779d7acb5ca9b507288bf",
+      "entry:REGISTRY-REPO-0001": "a8f61b27a33bce4db69e0a38e4b03c0251e4c1a92df4b487e06ccf24df4e63ad",
+      "entry:REGISTRY-REPO-0002": "850341d319c329b8e8d25424f8128967e66c8bd666f86facbfd88dd31ad2bdf4",
+      "entry:REGISTRY-REPO-0003": "6b38e055c6f4b6960f1a5fbdf723f4c67483839d564c2fc87702f663022b8c19",
+      "entry:REGISTRY-SYSTEM-0001": "d06adb5c40fa3193a0380b0acc8f6b5e19bb5ff869a79b5ba6901b9cb377d94e",
+      "entry:REGISTRY-SYSTEM-0002": "a855c24a5330f8c3b8e95783145d944ef0a9540ef2e8f1a6eb03395ade79f478",
+      "entry:REGISTRY-SYSTEM-0003": "0cf01b96f5bddc949ffbfb0cb82efd4d02378e3a58bd56686cf2f831c196b539",
+      "entry:REGISTRY-SYSTEM-0004": "5dbe4d97417f3fb6d261c07479d0c57fe65e1c5ee04a16a4a383ff2273b6daf3",
+      "entry:SCHEMA-VAL-0001": "9ca04e7d62330842b48857021a5ce7e789dfffef6434b505ac45e2692a970990",
+      "entry:TEMPLATE-TEMP-0001": "0651f062f4248e32e98084291c59772392ba58aed7af02eebb3917bd4a56fa27",
+      "entry:TEMPLATE-TEMP-0002": "8eb7862bfa809dcd02fc059611860f8c1258ff5539923900faf8f9586cc7aebb",
+      "entry:TEMPLATE-TEMP-0003": "1932a294026f8222364b4ba267aaf73dc17aec4372ea8f5b75eff6d14f76bef4",
+      "entry:TEST-BRANCH-0001": "16753c3351442c9078844fb9c4555b7f98e5e7a43898307d0157f4550040df5d",
+      "entry:TEST-BRANCH-0002": "8cd64b3518f03c8428351d8aa58b4dff8982d4514fb0d0310980e4a90c6cedf7",
+      "entry:TEST-BRANCH-0003": "aeb6b9bb864adf941f96f1d821865ff5374c2a04c82c011da000870c88667802",
+      "entry:TEST-BRANCH-0004": "334dd048bfe98cb159cea0da0362cd1201a684dc7e3e4acafcc920e8164cbb5d",
+      "entry:TEST-COMPACTION-0001": "bb1d75f8c8ab704106f27448a1400340e4b04b124ab349f2fac8e0484293ca1a",
+      "entry:TEST-COMPACTION-0002": "00564497d43e8e0dcfd9fd7d77c58207cb4c937adfdf79db6d8f7d26efe5e22c",
+      "entry:TEST-COMPACTION-0003": "4a28f90ccd3c469ea14848568fcba178ae081c4527be90fd0b4920619ce47d42",
+      "entry:TEST-COMPACTION-0004": "eea34900a8bed2a0d6357da0c531ad9bde1d5c471a48090de7b32a4a5966fd20",
+      "entry:TEST-COMPACTION-0005": "bcac25610d2cd91e0a8f587accc94a7d0f1664024f1c399bff86d6f04bf512a0",
+      "entry:TEST-EVENT-0001": "01dd76c8033355c4b623d83f4d153121f3051861fbe33e7eacdbd428839b291c",
+      "entry:TEST-EVENT-0002": "5853319475453ee8baa03f3d96c75cec2e7653ed2f2688165e78e1e9f45b3057",
+      "entry:TEST-EVENT-0003": "706631bb0ba77b7fa262cbe338f15f20f09c9bf3073d9393e4cc86e42a15ad04",
+      "entry:TEST-EVENT-0004": "d1e2ea9233ae118c60dae462e09dc6b60a4ed6c8b54785fb45103be3d12c653c",
+      "entry:TEST-EVENT-0005": "81c911a2d96fe94163ef2e0982793ab5484bb0758aba333a112047e5d95170c9",
+      "entry:TEST-EVENT-0006": "611e4e34815bea663984fc1daa4a8fa060ab06bd2741fa493cc8346084779572",
+      "entry:TEST-EVENT-0007": "3d8121ae5293d5b0552a7b20342ca0debbf4a543f553207d43501b82806a6f3d",
+      "entry:TEST-GATEWAY-0001": "b659ef786367840b0bd6a6a1cb95089e29cad65e80d3ee8ea3d95cda2024ec03",
+      "entry:TEST-GATEWAY-0002": "df0cf5b57ff13eed168db109ab610d0b63472823e6eb268db8a611a6ad34b697",
+      "entry:TEST-GATEWAY-0003": "4de834c962498b5a799d0c956b00487f43583954ebd4d277c01af06ce22aeaa7",
+      "entry:TEST-GATEWAY-0004": "29cd31d3e2bd42dbc2d0759f18b7242a79159e8c56da03d128b157f004bf79f4",
+      "entry:TEST-GATEWAY-0005": "de851f8b6b29eba2beef2a5c6634b062fb84429f76c9c66afdba62f63fd33aeb",
+      "entry:TEST-GATEWAY-0006": "7a0398c475c246b4c805069fb0feca41dd3cd73cc86eb385b2755474a468b178",
+      "entry:TEST-GATEWAY-0007": "f8b6eb979b05c782c287e50e40cb243216f05b9a9ff9ab35b87178f01cbf31a3",
+      "entry:TEST-GOV-0001": "b24e5ff338e81875b99a4fb3ca2f57a91a18c6be04c9856fc4dcd5519260f42e",
+      "entry:TEST-GOV-0002": "ddf0c96880ce2e8cec9b9458ec4d951bab0f771e88778f2935252a614537f0d3",
+      "entry:TEST-LOOP-0001": "e0843651c2666c39fd4cc5c32dc045989efe12f06056658d00eda6296f0ba1ce",
+      "entry:TEST-OPERATOR-0001": "67f7416beec7932ef1c74aa7f30518ffab8a4efabae54d601e3fe1906e9ba18b",
+      "entry:TEST-RUNTIME-0001": "0faec4baad59e352ff7a030ed78c206fd6a521f082e286565e1723173ca46b9a",
+      "entry:TEST-RUNTIME-0002": "3ff44105b0ae30bacab5660b55f4b93fddda91545b208e9def78d8e56d7f6211",
+      "entry:TEST-RUNTIME-0003": "709517b9037843f2ee051882bdfc355fb253b92dfe021103a59ff55b3966a2a7",
+      "entry:TEST-RUNTIME-0004": "a88a1230ff7c5768aea5bb1faf65cdab4d6a6946593d83c73cb91b819e2a18fe",
+      "entry:TEST-RUNTIME-0005": "81094176220f23939745f27339b34305b4df16f4631af05873b1cc01f1584f2f",
+      "entry:TEST-RUNTIME-0006": "e307f2dd299681534b8cff980dc376dafdd3eae8b3689831fb3b42647c8797f1",
+      "entry:TEST-RUNTIME-0007": "3deffd6bf2d2d2e43e11355260c594e4557ddb772384556e7dc9752a313b2535",
+      "entry:TEST-RUNTIME-0008": "abeaff764815597dc0e6f09c38e18db99ca31745492c2e520e2f1c3d78630fd6",
+      "entry:TEST-STATE-0001": "768f07cf6574e3fa1829aa07b3dc3e5839b79c71fbab97db106a10593800252c",
+      "entry:TEST-STATE-0002": "c945c6296cfef6aa148e0125544ff4ac0d8f9f1cbdc80b23613c8d4d2b737f26",
+      "entry:TEST-STATE-0003": "b9d7e1087a75829c174e5236d5724820b04bfa4afed906980951e9e6f86b2e11",
+      "entry:TEST-STATE-0004": "90bb0c43262ed5d87bd475c1bc2fe91d8f073569644b205693b00c52f8bf4978",
+      "entry:TEST-STATE-0005": "f37ab93ace8209fe65df35d99820024ad245e3a40eaa2c475e73589a033d49a4"
+    },
+    "derivation_hash": "b1bc0f445f5acab9210ae317df9b45b35bd6bbcf3f8ecbc401df78e9a70a0aff",
+    "entry_count": 185
+  },
+  "drift": {
+    "counts_by_category": {
+      "aggregate_mismatch": 1,
+      "allocator_family_unexpected": 28,
+      "allocator_next_number_mismatch": 1,
+      "missing_entry": 5,
+      "payload_mismatch": 124,
+      "stale_entry": 7
+    },
+    "counts_by_severity": {
+      "WARN": 166
+    },
+    "findings": [
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "ADR-ARC-0001",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "ADR-ARC-0002",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "ADR-ARC-0003",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "ADR-ARC-0004",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "ADR-ARC-0005",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "ADR-ARC-0006",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "ADR-ARC-0007",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "CJ-GOV-0001",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "CJ-IA-0001",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "DOC-KNOW-0001",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "DOC-RUN-0003",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "DOC-VAL-0001",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "DOC-WF-0001",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "MANIFEST-GOV-0001",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "MANIFEST-GOV-0002",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "MANIFEST-GOV-0003",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "MODULE-BRANCH-0001",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "MODULE-BRANCH-0002",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "MODULE-BRANCH-0003",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "MODULE-BRANCH-0004",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "MODULE-COMPACTION-0001",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "MODULE-COMPACTION-0002",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "MODULE-COMPACTION-0003",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "MODULE-COMPACTION-0004",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "MODULE-COMPACTION-0005",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "MODULE-COMPACTION-0006",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "MODULE-COMPACTION-0007",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "MODULE-COMPACTION-0008",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "MODULE-EVENT-0001",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "MODULE-EVENT-0002",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "MODULE-EVENT-0003",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "MODULE-EVENT-0004",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "MODULE-EVENT-0005",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "MODULE-EVENT-0006",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "MODULE-EVENT-0007",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "MODULE-EVENT-0008",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "MODULE-EVENT-0009",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "MODULE-EVENT-0010",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "MODULE-EVENT-0011",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "MODULE-GATEWAY-0001",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "MODULE-GATEWAY-0002",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "MODULE-GATEWAY-0003",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "MODULE-GATEWAY-0004",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "MODULE-GATEWAY-0005",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "MODULE-GATEWAY-0006",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "MODULE-GATEWAY-0007",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "MODULE-GATEWAY-0008",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "MODULE-GATEWAY-0009",
+        "severity": "WARN"
+      },
+      {
+        "category": "missing_entry",
+        "message": "Entry is present in derived state but missing from current registry working state.",
+        "path": "MODULE-GOV-0009",
+        "severity": "WARN"
+      },
+      {
+        "category": "missing_entry",
+        "message": "Entry is present in derived state but missing from current registry working state.",
+        "path": "MODULE-GOV-0010",
+        "severity": "WARN"
+      },
+      {
+        "category": "missing_entry",
+        "message": "Entry is present in derived state but missing from current registry working state.",
+        "path": "MODULE-GOV-0011",
+        "severity": "WARN"
+      },
+      {
+        "category": "missing_entry",
+        "message": "Entry is present in derived state but missing from current registry working state.",
+        "path": "MODULE-GOV-0012",
+        "severity": "WARN"
+      },
+      {
+        "category": "missing_entry",
+        "message": "Entry is present in derived state but missing from current registry working state.",
+        "path": "MODULE-GOV-0013",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "MODULE-IDS-0001",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "MODULE-LOOP-0001",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "MODULE-LOOP-0002",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "MODULE-LOOP-0003",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "MODULE-OPERATOR-0003",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "MODULE-OPERATOR-0004",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "MODULE-RUNTIME-0001",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "MODULE-RUNTIME-0002",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "MODULE-RUNTIME-0003",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "MODULE-RUNTIME-0004",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "MODULE-RUNTIME-0005",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "MODULE-RUNTIME-0006",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "MODULE-RUNTIME-0007",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "MODULE-RUNTIME-0008",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "MODULE-RUNTIME-0009",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "MODULE-STATE-0001",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "MODULE-STATE-0002",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "MODULE-STATE-0003",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "MODULE-STATE-0004",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "MODULE-STATE-0005",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "MODULE-STATE-0006",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "MODULE-STATE-0007",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "MODULE-STATE-0008",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "MODULE-STATE-0009",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "MODULE-STATE-0010",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "MODULE-STATE-0011",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "MODULE-STATE-0012",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "MODULE-STATE-0013",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "MODULE-STATE-0014",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "MODULE-STATE-0015",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "MODULE-STATE-0016",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "MODULE-STATE-0017",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "MODULE-STATE-0018",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "MODULE-STATE-0019",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "POLICY-GOV-0001",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "TEMPLATE-TEMP-0001",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "TEMPLATE-TEMP-0002",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "TEMPLATE-TEMP-0003",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "TEST-BRANCH-0001",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "TEST-BRANCH-0002",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "TEST-BRANCH-0003",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "TEST-BRANCH-0004",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "TEST-COMPACTION-0001",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "TEST-COMPACTION-0002",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "TEST-COMPACTION-0003",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "TEST-COMPACTION-0004",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "TEST-COMPACTION-0005",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "TEST-EVENT-0001",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "TEST-EVENT-0002",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "TEST-EVENT-0003",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "TEST-EVENT-0004",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "TEST-EVENT-0005",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "TEST-EVENT-0006",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "TEST-EVENT-0007",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "TEST-GATEWAY-0001",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "TEST-GATEWAY-0002",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "TEST-GATEWAY-0003",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "TEST-GATEWAY-0004",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "TEST-GATEWAY-0005",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "TEST-GATEWAY-0006",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "TEST-GATEWAY-0007",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "TEST-LOOP-0001",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "TEST-OPERATOR-0001",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "TEST-RUNTIME-0001",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "TEST-RUNTIME-0002",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "TEST-RUNTIME-0003",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "TEST-RUNTIME-0004",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "TEST-RUNTIME-0005",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "TEST-RUNTIME-0006",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "TEST-RUNTIME-0007",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "TEST-RUNTIME-0008",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "TEST-STATE-0001",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "TEST-STATE-0002",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "TEST-STATE-0003",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "TEST-STATE-0004",
+        "severity": "WARN"
+      },
+      {
+        "category": "payload_mismatch",
+        "message": "Entry payload differs between derived state and current registry working state.",
+        "path": "TEST-STATE-0005",
+        "severity": "WARN"
+      },
+      {
+        "category": "stale_entry",
+        "message": "Entry exists in current registry working state but not in derived state.",
+        "path": "CJ-SYS-0001",
+        "severity": "WARN"
+      },
+      {
+        "category": "stale_entry",
+        "message": "Entry exists in current registry working state but not in derived state.",
+        "path": "CONFIG-RUN-0001",
+        "severity": "WARN"
+      },
+      {
+        "category": "stale_entry",
+        "message": "Entry exists in current registry working state but not in derived state.",
+        "path": "DOC-ARC-0001",
+        "severity": "WARN"
+      },
+      {
+        "category": "stale_entry",
+        "message": "Entry exists in current registry working state but not in derived state.",
+        "path": "DOC-RUN-0001",
+        "severity": "WARN"
+      },
+      {
+        "category": "stale_entry",
+        "message": "Entry exists in current registry working state but not in derived state.",
+        "path": "DOC-RUN-0002",
+        "severity": "WARN"
+      },
+      {
+        "category": "stale_entry",
+        "message": "Entry exists in current registry working state but not in derived state.",
+        "path": "DOC-SYS-0001",
+        "severity": "WARN"
+      },
+      {
+        "category": "stale_entry",
+        "message": "Entry exists in current registry working state but not in derived state.",
+        "path": "REGISTRY-GOV-0001",
+        "severity": "WARN"
+      },
+      {
+        "category": "allocator_next_number_mismatch",
+        "message": "Allocator next_number differs between derived state and current working state.",
+        "path": "MODULE-GOV",
+        "severity": "WARN"
+      },
+      {
+        "category": "allocator_family_unexpected",
+        "message": "Allocator family exists in current working state but is absent from derived state.",
+        "path": "CJ-SYS",
+        "severity": "WARN"
+      },
+      {
+        "category": "allocator_family_unexpected",
+        "message": "Allocator family exists in current working state but is absent from derived state.",
+        "path": "DOC-ARC",
+        "severity": "WARN"
+      },
+      {
+        "category": "allocator_family_unexpected",
+        "message": "Allocator family exists in current working state but is absent from derived state.",
+        "path": "DOC-SYS",
+        "severity": "WARN"
+      },
+      {
+        "category": "allocator_family_unexpected",
+        "message": "Allocator family exists in current working state but is absent from derived state.",
+        "path": "MOD-BRANCH-COMPACTION",
+        "severity": "WARN"
+      },
+      {
+        "category": "allocator_family_unexpected",
+        "message": "Allocator family exists in current working state but is absent from derived state.",
+        "path": "MOD-BRANCH-CONTINUITY",
+        "severity": "WARN"
+      },
+      {
+        "category": "allocator_family_unexpected",
+        "message": "Allocator family exists in current working state but is absent from derived state.",
+        "path": "MOD-BRIDGE-DISPATCH",
+        "severity": "WARN"
+      },
+      {
+        "category": "allocator_family_unexpected",
+        "message": "Allocator family exists in current working state but is absent from derived state.",
+        "path": "MOD-EVENT-LOG",
+        "severity": "WARN"
+      },
+      {
+        "category": "allocator_family_unexpected",
+        "message": "Allocator family exists in current working state but is absent from derived state.",
+        "path": "MOD-META-HEADER",
+        "severity": "WARN"
+      },
+      {
+        "category": "allocator_family_unexpected",
+        "message": "Allocator family exists in current working state but is absent from derived state.",
+        "path": "MOD-META-RECONCILE",
+        "severity": "WARN"
+      },
+      {
+        "category": "allocator_family_unexpected",
+        "message": "Allocator family exists in current working state but is absent from derived state.",
+        "path": "MOD-META-REGISTRY",
+        "severity": "WARN"
+      },
+      {
+        "category": "allocator_family_unexpected",
+        "message": "Allocator family exists in current working state but is absent from derived state.",
+        "path": "MOD-META-SCAFFOLD",
+        "severity": "WARN"
+      },
+      {
+        "category": "allocator_family_unexpected",
+        "message": "Allocator family exists in current working state but is absent from derived state.",
+        "path": "MOD-META-SCHEMA-POLICY",
+        "severity": "WARN"
+      },
+      {
+        "category": "allocator_family_unexpected",
+        "message": "Allocator family exists in current working state but is absent from derived state.",
+        "path": "MOD-OPERATOR-SURFACE",
+        "severity": "WARN"
+      },
+      {
+        "category": "allocator_family_unexpected",
+        "message": "Allocator family exists in current working state but is absent from derived state.",
+        "path": "MOD-PLANNING-EXECUTION-LOOP",
+        "severity": "WARN"
+      },
+      {
+        "category": "allocator_family_unexpected",
+        "message": "Allocator family exists in current working state but is absent from derived state.",
+        "path": "MOD-RETRIEVAL-LAYER",
+        "severity": "WARN"
+      },
+      {
+        "category": "allocator_family_unexpected",
+        "message": "Allocator family exists in current working state but is absent from derived state.",
+        "path": "MOD-REVIEW-GATE",
+        "severity": "WARN"
+      },
+      {
+        "category": "allocator_family_unexpected",
+        "message": "Allocator family exists in current working state but is absent from derived state.",
+        "path": "MOD-RUNTIME-GATEWAY",
+        "severity": "WARN"
+      },
+      {
+        "category": "allocator_family_unexpected",
+        "message": "Allocator family exists in current working state but is absent from derived state.",
+        "path": "MOD-SYSTEM-MEMORY",
+        "severity": "WARN"
+      },
+      {
+        "category": "allocator_family_unexpected",
+        "message": "Allocator family exists in current working state but is absent from derived state.",
+        "path": "MOD-TOOL-GATEWAY",
+        "severity": "WARN"
+      },
+      {
+        "category": "allocator_family_unexpected",
+        "message": "Allocator family exists in current working state but is absent from derived state.",
+        "path": "MOD-WORK-OBJECT-REGISTRY",
+        "severity": "WARN"
+      },
+      {
+        "category": "allocator_family_unexpected",
+        "message": "Allocator family exists in current working state but is absent from derived state.",
+        "path": "REGISTRY-GOV",
+        "severity": "WARN"
+      },
+      {
+        "category": "allocator_family_unexpected",
+        "message": "Allocator family exists in current working state but is absent from derived state.",
+        "path": "REPO-BLUEPRINT",
+        "severity": "WARN"
+      },
+      {
+        "category": "allocator_family_unexpected",
+        "message": "Allocator family exists in current working state but is absent from derived state.",
+        "path": "REPO-KNOWLEDGE",
+        "severity": "WARN"
+      },
+      {
+        "category": "allocator_family_unexpected",
+        "message": "Allocator family exists in current working state but is absent from derived state.",
+        "path": "REPO-RUNTIME",
+        "severity": "WARN"
+      },
+      {
+        "category": "allocator_family_unexpected",
+        "message": "Allocator family exists in current working state but is absent from derived state.",
+        "path": "SYS-INTEGRATION",
+        "severity": "WARN"
+      },
+      {
+        "category": "allocator_family_unexpected",
+        "message": "Allocator family exists in current working state but is absent from derived state.",
+        "path": "SYS-KERNEL",
+        "severity": "WARN"
+      },
+      {
+        "category": "allocator_family_unexpected",
+        "message": "Allocator family exists in current working state but is absent from derived state.",
+        "path": "SYS-METADATA",
+        "severity": "WARN"
+      },
+      {
+        "category": "allocator_family_unexpected",
+        "message": "Allocator family exists in current working state but is absent from derived state.",
+        "path": "SYS-RETRIEVAL-MEMORY",
+        "severity": "WARN"
+      },
+      {
+        "category": "aggregate_mismatch",
+        "message": "Aggregate registry payload differs between derived state and current registry working state.",
+        "path": "REGISTRIES/OVIS_FILE_REGISTRY.yaml",
+        "severity": "WARN"
+      }
+    ]
+  },
+  "scope_summary": {
+    "excluded_by_reason": {
+      "generated_or_sidecar_storage": 4,
+      "manifest:cross_cutting_runtime_report": 1,
+      "manifest:repo_bootstrap_task": 1,
+      "manifest:repo_surface_navigation": 1,
+      "manifest:repo_surface_overview": 2,
+      "manifest:repo_wide_configuration": 1,
+      "normalization_exclusion_manifest": 1,
+      "registry_state": 60
+    },
+    "excluded_count": 71,
+    "included_count": 185,
+    "scanned_count": 185
+  },
+  "source_refs": {
+    "ovis-blueprint": "2fc21b14d10d5bf75d954a2564d5e2edf31c00a1",
+    "ovis-knowledge": "2ea5bff53fbdd7243afd7fb661031d934dd10721",
+    "ovis-runtime": "22136522433ca8919ab050c11f0ea094431b7ab7"
+  }
+}

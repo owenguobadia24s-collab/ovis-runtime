@@ -1,0 +1,63 @@
+{
+  "artifact_issues": [
+    {
+      "message": "Missing required metadata.",
+      "path": "ovis-blueprint:ADR/ADR-001_CANONICAL_STATE_MODEL_AND_LINEAGE.md",
+      "severity": "ERROR"
+    },
+    {
+      "message": "Missing required metadata.",
+      "path": "ovis-blueprint:ADR/ADR-002_FUNCTION_CALLING_CANONICAL_CAPABILITY_BUS.md",
+      "severity": "ERROR"
+    },
+    {
+      "message": "Missing required metadata.",
+      "path": "ovis-blueprint:ADR/ADR-003_RESPONSES_API_CANONICAL_RUNTIME.md",
+      "severity": "ERROR"
+    },
+    {
+      "message": "Missing required metadata.",
+      "path": "ovis-runtime:.gitignore",
+      "severity": "ERROR"
+    },
+    {
+      "message": "Artifact or registry input errors present; dry-run reconciliation aborted.",
+      "path": "c:\\Users\\Owner\\OVIS\\ovis-blueprint",
+      "severity": "ERROR"
+    }
+  ],
+  "derived": {
+    "aggregate_entry_count": 0,
+    "allocator_family_count": 0,
+    "candidate_hashes": {
+      "aggregate": "6a803f891cf274ae2b2d94d6276c50dd26449260cf8602b964538cb962971231",
+      "allocators": "ceca6df3458aef2c3ce0d8a64cdfc08981f271f8a7f216df867b134d8a80b4a1"
+    },
+    "derivation_hash": "7d628d5b20fada1a1d03235c28a8cd5224281d4c6cb9507669c9562980dd5628",
+    "entry_count": 0
+  },
+  "drift": {
+    "counts_by_category": {},
+    "counts_by_severity": {},
+    "findings": []
+  },
+  "scope_summary": {
+    "excluded_by_reason": {
+      "generated_or_sidecar_storage": 3,
+      "manifest:cross_cutting_runtime_report": 1,
+      "manifest:repo_bootstrap_task": 1,
+      "manifest:repo_surface_navigation": 1,
+      "manifest:repo_surface_overview": 2,
+      "manifest:repo_wide_configuration": 1,
+      "registry_state": 60
+    },
+    "excluded_count": 69,
+    "included_count": 173,
+    "scanned_count": 177
+  },
+  "source_refs": {
+    "ovis-blueprint": "83e0a89ac3b15c9ad6d236881f80fd44d7981360",
+    "ovis-knowledge": "8a764c61bcb868cbd89545352d76c2fc0bdfc8dc",
+    "ovis-runtime": "904a127768bb0ed2d329e958c73948f8c77ee130"
+  }
+}

@@ -1,6 +1,33 @@
-# POST CJ12 System State
+---
+id: DOC-RUN-0002
+title: Post CJ12 System State
+type: DOC
+status: active
+authority: operational
+version: '0.1'
+layer: runtime
+domain: run
+repo: ovis-runtime
+path: docs/POST_CJ12_SYSTEM_STATE.md
+owner: Owen Vitae
+created: '2026-03-21'
+last_updated: '2026-03-21'
+registry: ovis-blueprint/REGISTRIES/entries/DOC-RUN-0002.yaml
+---
 
-## 1. Purpose
+# Purpose
+
+Describe Post CJ12 System State within the OVIS workspace.
+
+# Scope
+
+This file governs or documents Post CJ12 System State within the ovis-runtime repository.
+
+# Content
+
+## POST CJ12 System State
+
+### 1. Purpose
 
 This document records the authoritative system state of OVIS after completion of the first implementation cycle, covering CJ-001 through CJ-012.
 
@@ -16,7 +43,7 @@ OVIS now operates as a functioning governed cognitive execution system composed 
 
 This document establishes the stable baseline for the next development phase. Its purpose is to freeze the architecture, operational boundaries, and system invariants that now exist in `ovis-runtime`.
 
-## 2. System Overview
+### 2. System Overview
 
 OVIS is organized as a layered governed execution system. A loop cycle begins with operator or upstream signal input, passes through approval and explicit execution selection, records its activity in the append-only event log, preserves continuity in branch state, and may optionally reduce continuity through compaction.
 
@@ -44,9 +71,9 @@ Operator Inspection
 
 The loop orchestrates subsystems but does not replace them. Runtime invocation, capability execution, branch continuity, compaction, and event persistence remain owned by their respective canonical layers. Operator access sits on top of those layers and is constrained to their public entrypoints.
 
-## 3. Canonical Subsystems
+### 3. Canonical Subsystems
 
-### Event Log (CJ-006)
+#### Event Log (CJ-006)
 
 Responsibilities:
 
@@ -60,7 +87,7 @@ Location: `src/ovis_event_log/`
 
 Key invariant: events are append-only and never mutated after persistence.
 
-### Runtime Adapter (CJ-007)
+#### Runtime Adapter (CJ-007)
 
 Responsibilities:
 
@@ -72,7 +99,7 @@ Location: `src/ovis_responses_runtime/`
 
 Key invariant: all model calls must pass through `RuntimeAdapter.invoke()`.
 
-### Capability Gateway (CJ-008)
+#### Capability Gateway (CJ-008)
 
 Responsibilities:
 
@@ -85,7 +112,7 @@ Location: `src/ovis_tool_gateway/`
 
 Key invariant: capabilities execute only through `CapabilityDispatcher.execute()`.
 
-### Branch Lifecycle (CJ-009)
+#### Branch Lifecycle (CJ-009)
 
 Responsibilities:
 
@@ -97,7 +124,7 @@ Location: `src/ovis_branch/`
 
 Key invariant: `branch_id` is the continuity anchor.
 
-### Branch Compaction (CJ-010)
+#### Branch Compaction (CJ-010)
 
 Responsibilities:
 
@@ -109,7 +136,7 @@ Location: `src/ovis_branch_compaction/`
 
 Key invariant: compaction reduces continuity but does not replace branch identity.
 
-### Recursive Loop (CJ-011)
+#### Recursive Loop (CJ-011)
 
 Responsibilities:
 
@@ -120,7 +147,7 @@ Location: `src/ovis_loop/`
 
 Key invariant: the loop composes subsystems but does not reimplement them.
 
-### Operator Interface (CJ-012)
+#### Operator Interface (CJ-012)
 
 Responsibilities:
 
@@ -136,7 +163,7 @@ Location: `src/ovis_operator/`
 
 Key invariant: the CLI calls canonical subsystems rather than bypassing them.
 
-## 4. Canonical Identity Model
+### 4. Canonical Identity Model
 
 OVIS identity remains OVIS-owned and prefix-governed. Canonical identifiers are distinct from ordering metadata, hashes, and any external provider references.
 
@@ -169,7 +196,7 @@ Sequence is used for event ordering within persisted event files. Hashes are use
 
 Identity helpers are centralized in `src/ovis_ids/`.
 
-## 5. Persisted Artifacts
+### 5. Persisted Artifacts
 
 OVIS now persists three operator-visible artifact classes.
 
@@ -189,7 +216,7 @@ Branch persistence is direct canonical `BranchState` persistence. It does not us
 
 Together, these artifacts form the audit surface of the current system. They expose execution history, continuity state, and continuity reduction outputs without introducing a separate query or reconstruction layer.
 
-## 6. Canonical Entry Points
+### 6. Canonical Entry Points
 
 The only legitimate entrypoints for system behavior are:
 
@@ -202,7 +229,7 @@ The only legitimate entrypoints for system behavior are:
 
 Subsystems must not bypass these entrypoints. New work should compose these surfaces rather than introducing alternate control paths.
 
-## 7. System Invariants
+### 7. System Invariants
 
 The following rules are baseline system invariants and must not be violated:
 
@@ -217,7 +244,7 @@ The following rules are baseline system invariants and must not be violated:
 
 These invariants define both the architectural boundary and the audit boundary of the current implementation.
 
-## 8. Known Constraints (v1)
+### 8. Known Constraints (v1)
 
 The current system intentionally remains narrow:
 
@@ -229,7 +256,7 @@ The current system intentionally remains narrow:
 
 These constraints keep the system understandable, inspectable, and auditable while the baseline architecture stabilizes.
 
-## 9. Phase S1 Stabilization Targets
+### 9. Phase S1 Stabilization Targets
 
 The next phase should prioritize stabilization and hardening rather than architectural expansion. Current targets are:
 
@@ -242,10 +269,14 @@ The next phase should prioritize stabilization and hardening rather than archite
 
 The intent of Phase S1 is to strengthen the reliability and operational clarity of the existing system before expanding behavior.
 
-## 10. Summary
+### 10. Summary
 
 OVIS now operates as a governed cognitive infrastructure with the following operational flow:
 
 `state -> reasoning -> execution -> audit -> continuity -> recursion`
 
 CJ-001 through CJ-012 collectively define the first operational version of the system. The architecture now exists as a composed set of canonical layers with stable entrypoints, persistent audit artifacts, governed execution paths, and an operator-facing shell that remains subordinate to those canonical subsystems.
+
+# References
+
+- ovis-blueprint/REGISTRIES/entries/

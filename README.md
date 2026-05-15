@@ -1,4 +1,31 @@
-# OVIS Runtime
+---
+id: DOC-RUN-0001
+title: OVIS Runtime
+type: DOC
+status: active
+authority: operational
+version: '0.1'
+layer: runtime
+domain: run
+repo: ovis-runtime
+path: README.md
+owner: Owen Vitae
+created: '2026-03-21'
+last_updated: '2026-03-21'
+registry: ovis-blueprint/REGISTRIES/entries/DOC-RUN-0001.yaml
+---
+
+# Purpose
+
+Describe OVIS Runtime within the OVIS workspace.
+
+# Scope
+
+This file governs or documents OVIS Runtime within the ovis-runtime repository.
+
+# Content
+
+## OVIS Runtime
 
 Scaffold-only Python package for the first OVIS Tool Gateway implementation boundary.
 
@@ -27,3 +54,7 @@ Architectural truth remains upstream in `ovis-blueprint`, especially ADR-001 thr
 
 Schema authoring principle:
 - Typed Python models are primary; JSON Schema is generated/exported, not hand-maintained separately unless required.
+
+# References
+
+- ovis-blueprint/REGISTRIES/entries/

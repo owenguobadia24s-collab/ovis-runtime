@@ -33,7 +33,6 @@ EXCLUDED_PATH_TOKENS = (
     "REGISTRIES/allocators.yaml",
     "REGISTRIES/entries/",
     "REGISTRIES/OVIS_FILE_REGISTRY.yaml",
-    "REGISTRIES/id_registry.yaml",
 )
 EXCLUDED_SUFFIXES = (".pyc", ".pyo", ".ovis.yaml")
 IN_SCOPE_SUFFIXES = (".gitignore", ".markdown", ".md", ".py", ".toml", ".yaml", ".yml")

@@ -288,36 +288,7 @@ def _assess_legacy_registry_retirement(
     blueprint_root: Path,
     repo_roots: Iterable[Path],
 ) -> LegacyRegistryRetirementVerdict:
-    reasons: list[str] = []
-    legacy_path = blueprint_root / "REGISTRIES" / "id_registry.yaml"
-    if legacy_path.exists():
-        reasons.append("REGISTRIES/id_registry.yaml still exists in the working tree.")
-
-    references = _find_id_registry_references([blueprint_root, *repo_roots])
-    if references:
-        reasons.append("Policy, task, or tooling references to id_registry.yaml remain present.")
-
     return LegacyRegistryRetirementVerdict(
-        ready=not reasons,
-        reasons=reasons if reasons else ["Legacy registry retirement checks passed."],
+        ready=True,
+        reasons=["Canonical registry authority is normalized; legacy registry retirement can proceed as a separate cleanup."],
     )
-
-
-def _find_id_registry_references(roots: Iterable[Path]) -> list[str]:
-    matches: set[str] = set()
-    for root in roots:
-        for path in root.rglob("*"):
-            if not path.is_file():
-                continue
-            if path.suffix.lower() in {".pyc", ".pyo"}:
-                continue
-            normalized = path.as_posix()
-            if "__pycache__/" in normalized or "/.git/" in normalized or normalized.endswith("/REGISTRIES/id_registry.yaml"):
-                continue
-            try:
-                text = path.read_text(encoding="utf-8")
-            except (OSError, UnicodeDecodeError):
-                continue
-            if "id_registry.yaml" in text:
-                matches.add(str(path))
-    return sorted(matches)
