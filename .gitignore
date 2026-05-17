@@ -147,3 +147,4 @@ coverage.xml
 
 poetry.lock
 Pipfile.lock
+__pycache__/
