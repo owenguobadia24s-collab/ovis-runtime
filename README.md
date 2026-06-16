@@ -27,33 +27,45 @@ This file governs or documents OVIS Runtime within the ovis-runtime repository.
 
 ## OVIS Runtime
 
-Scaffold-only Python package for the first OVIS Tool Gateway implementation boundary.
+Operational Python package for the implemented OVIS runtime baseline. This repo contains the runtime surfaces that execute, persist, inspect, and validate governed OVIS activity while remaining subordinate to blueprint doctrine and metadata authority.
 
-Current scope:
-- package structure only
-- registry module
-- schema loader surface
-- execution wrapper interface
-- policy hook placeholders
-- result-envelope structure
-- shared types
-- canonical state/schema package scaffold
-- JSON Schema export surface
-- transition validation surface
-- test skeletons
+Implemented:
+- canonical state models and transition validation
+- JSON Schema export from Python model definitions
+- append-only event log writers with validation, hashing, and JSONL file persistence
+- runtime adapter and OpenAI provider boundary
+- branch lifecycle with in-memory and file-backed branch stores
+- branch compaction executor with deterministic local reduction
+- recursive loop runner for governed runtime or capability cycles
+- operator CLI for signal creation, branch inspection, event tailing, compaction, loop runs, and metadata commands
+- metadata scan, validation, reconciliation, normalization, and file initialization tooling
 
-Out of scope for this scaffold:
-- runtime implementation
-- compaction implementation
-- bridge implementation
-- persistence wiring
-- real execution dispatch
-- real policy evaluation
+Partial:
+- tool gateway registry, dispatcher, result envelopes, event emission, and registered in-process capability execution are implemented
+- tool gateway schema loading remains a placeholder surface
+- policy hooks are supported when supplied, but bundled production policy evaluation is not complete
+- idempotency fields exist on execution requests and envelopes, but no durable idempotency store is implemented
 
-Architectural truth remains upstream in `ovis-blueprint`, especially ADR-001 through ADR-006 and the CJ-001 scaffold task.
+Planned or out of scope for this repo baseline:
+- Notion bridge
+- OVIS/OVC bridge
+- retrieval or knowledge implementation
+- production external side-effect dispatch
+- validator exit-code repair
+- policy or gateway expansion beyond the current surfaces
+
+Architectural and metadata truth remains upstream in `ovis-blueprint`, especially the canonical ADRs, policies, and registry entries. Runtime implements operational surfaces under those boundaries; it does not redefine doctrine.
 
 Schema authoring principle:
 - Typed Python models are primary; JSON Schema is generated/exported, not hand-maintained separately unless required.
+
+Validation:
+- `python -m pytest -q`
+- `C:\Users\Owner\OVIS\ovis-runtime\.venv\Scripts\ovis.exe metadata validate --repo-root C:\Users\Owner\OVIS\ovis-runtime --blueprint-root C:\Users\Owner\OVIS\ovis-blueprint --migration-phase M2`
+- Run blueprint metadata validation as well when blueprint continuity logs or registry files are changed.
+
+Known issue:
+- Blueprint metadata validation may return native exit code `1` while the JSON report says `complete: true`. Treat the JSON completion field as the semantic result until the validator exit-code issue is repaired in a separate job.
 
 # References
 

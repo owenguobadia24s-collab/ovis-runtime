@@ -103,10 +103,17 @@ Key invariant: all model calls must pass through `RuntimeAdapter.invoke()`.
 
 Responsibilities:
 
-- governed capability execution
+- governed dispatch over registered in-process capabilities
 - registry-based capability resolution
-- policy hook enforcement
-- execution lifecycle event emission
+- optional policy hook integration
+- result-envelope generation
+- capability lifecycle event emission
+
+Current limits:
+
+- schema loading remains a placeholder surface
+- bundled default policy evaluation remains thin and caller-provided through hooks
+- production external bridge dispatch is not implemented
 
 Location: `src/ovis_tool_gateway/`
 
@@ -251,7 +258,8 @@ The current system intentionally remains narrow:
 - branch persistence is file-backed, not database-backed
 - event tail is a simple file reader, not a query layer
 - compaction is deterministic local reduction, not model summarization
-- the approval gate is intentionally thin
+- the approval gate and default policy evaluation are intentionally thin
+- tool gateway schema loading and production external dispatch are not implemented
 - the operator CLI is intentionally minimal
 
 These constraints keep the system understandable, inspectable, and auditable while the baseline architecture stabilizes.
