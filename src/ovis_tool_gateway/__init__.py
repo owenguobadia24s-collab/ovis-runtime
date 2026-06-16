@@ -21,6 +21,7 @@
 """Scaffold-only OVIS tool gateway package."""
 
 from .capabilities import DEFAULT_CAPABILITY_REGISTRY, capability
+from .bridge_dry_run import BridgeDryRunRequest, BridgeDryRunResult, BridgeDryRunService
 from .dispatcher import CapabilityDispatcher
 from .envelopes import placeholder_result
 from .registry import CapabilityRegistry
@@ -44,6 +45,9 @@ from .types import (
 __all__ = [
     "AIWritePolicyContext",
     "AIWritePolicyDecision",
+    "BridgeDryRunRequest",
+    "BridgeDryRunResult",
+    "BridgeDryRunService",
     "CapabilityDispatcher",
     "CapabilityDefinition",
     "CapabilityRegistry",
