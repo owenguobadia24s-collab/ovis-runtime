@@ -26,7 +26,14 @@ from .envelopes import placeholder_result
 from .registry import CapabilityRegistry
 from .schema_loader import PlaceholderSchemaLoader, SchemaHandle, SchemaLoader
 from .executor import ExecutionWrapper, PlaceholderExecutionWrapper
-from .policy_hooks import PolicyHook, PlaceholderPolicyHook
+from .policy_hooks import (
+    AIWritePolicyContext,
+    AIWritePolicyDecision,
+    PermissionLevel,
+    PlaceholderPolicyHook,
+    PolicyHook,
+    StaticAIWritePolicyHook,
+)
 from .types import (
     CapabilityDefinition,
     ExecutionRequest,
@@ -35,6 +42,8 @@ from .types import (
 )
 
 __all__ = [
+    "AIWritePolicyContext",
+    "AIWritePolicyDecision",
     "CapabilityDispatcher",
     "CapabilityDefinition",
     "CapabilityRegistry",
@@ -42,6 +51,7 @@ __all__ = [
     "ExecutionRequest",
     "ExecutionResultEnvelope",
     "ExecutionWrapper",
+    "PermissionLevel",
     "PlaceholderExecutionWrapper",
     "PlaceholderPolicyHook",
     "PlaceholderSchemaLoader",
@@ -49,6 +59,7 @@ __all__ = [
     "PolicyHook",
     "SchemaHandle",
     "SchemaLoader",
+    "StaticAIWritePolicyHook",
     "capability",
     "placeholder_result",
 ]
