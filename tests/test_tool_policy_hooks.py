@@ -255,6 +255,7 @@ def test_static_ai_write_policy_denies_external_side_effect_without_authorizatio
 
 def test_static_ai_write_policy_integrates_with_dispatcher_block_and_allow_paths() -> None:
     registry = CapabilityRegistry()
+    writer = MemoryEventWriter()
     executed = {"count": 0}
 
     def handler(payload: dict[str, object]) -> dict[str, object]:
@@ -273,7 +274,7 @@ def test_static_ai_write_policy_integrates_with_dispatcher_block_and_allow_paths
     dispatcher = CapabilityDispatcher(
         registry=registry,
         policy_hook=StaticAIWritePolicyHook(),
-        event_writer=MemoryEventWriter(),
+        event_writer=writer,
     )
 
     blocked = dispatcher.execute(
@@ -304,8 +305,13 @@ def test_static_ai_write_policy_integrates_with_dispatcher_block_and_allow_paths
     )
 
     assert blocked.execution_status == "blocked"
+    assert blocked.idempotency_outcome == "not-evaluated"
     assert blocked.policy_disposition == "deny"
-    assert "outside allowed write paths" in blocked.error_details
+    assert blocked.error_details == "write target is outside allowed write paths."
     assert allowed.execution_status == "success"
     assert allowed.policy_disposition == "allow"
     assert executed["count"] == 1
+    records = writer.records()
+    assert records[1]["event_type"] == "capability.error"
+    assert records[1]["payload"]["payload_inline"]["error_type"] == "PolicyBlocked"
+    assert records[1]["payload"]["payload_inline"]["message"] == "write target is outside allowed write paths."

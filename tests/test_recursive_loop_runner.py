@@ -43,7 +43,12 @@ from ovis_responses_runtime import (  # noqa: E402
     SessionMode,
 )
 from ovis_state_models import PolicyProfile, RiskClass  # noqa: E402
-from ovis_tool_gateway import CapabilityDefinition, CapabilityRegistry, PolicyDecision  # noqa: E402
+from ovis_tool_gateway import (  # noqa: E402
+    CapabilityDefinition,
+    CapabilityRegistry,
+    PolicyDecision,
+    StaticAIWritePolicyHook,
+)
 
 
 class _FakeProviderAdapter:
@@ -391,6 +396,65 @@ def test_capability_blocked_and_error_are_surfaced_honestly(
     assert result.execute_job.status == expected_execute_status
     assert result.work_object.status == expected_work_status
     assert expected_subsystem_event in [event.event_type for event in result.branch_state.event_refs]
+
+
+def test_static_ai_write_policy_denial_blocks_capability_loop_without_handler_execution(tmp_path: Path) -> None:
+    writer = MemoryEventWriter()
+    registry = CapabilityRegistry()
+    calls: list[dict[str, object]] = []
+
+    def handler(payload: dict[str, object]) -> dict[str, object]:
+        calls.append(payload)
+        return payload
+
+    registry.register(
+        CapabilityDefinition(
+            name="repo.patch",
+            version="v1",
+            schema_ref="schemas/repo.patch.json",
+            side_effect_class="state-write",
+        ),
+        handler=handler,
+    )
+    runner = RecursiveLoopRunner(
+        event_writer=writer,
+        runtime_config=_runtime_config(),
+        capability_registry=registry,
+        capability_policy_hook=StaticAIWritePolicyHook(),
+        compaction_artifact_root=tmp_path / "compactions",
+    )
+
+    result = runner.run(
+        LoopRequest(
+            signal=_signal_input(),
+            objective="Patch through governed capability",
+            execution_mode=LoopExecutionMode.CAPABILITY,
+            capability_name="repo.patch",
+            capability_payload={
+                "action": "write",
+                "target_path": "src/ovis_tool_gateway/dispatcher.py",
+                "allowed_write_paths": ("tests/**",),
+            },
+            approval=_approval(),
+        )
+    )
+
+    assert calls == []
+    assert result.success is False
+    assert result.execution_succeeded is False
+    assert result.error_stage == LoopStage.EXECUTION
+    assert result.error_message == "write target is outside allowed write paths."
+    assert result.execute_job is not None
+    assert result.execute_job.status == "cancelled"
+    assert result.work_object.status == "blocked"
+    assert result.capability_result is not None
+    assert result.capability_result.execution_status == "blocked"
+    assert result.capability_result.policy_disposition == "deny"
+    assert result.capability_result.error_details == "write target is outside allowed write paths."
+    assert "capability.error" in [event.event_type for event in result.branch_state.event_refs]
+    assert any(
+        record["payload"]["payload_inline"].get("error_type") == "PolicyBlocked" for record in writer.records()
+    )
 
 
 def test_compact_after_run_triggers_compaction_after_success(tmp_path: Path) -> None:
