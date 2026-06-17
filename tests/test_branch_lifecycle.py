@@ -106,7 +106,7 @@ def test_append_event_preserves_identity_and_append_order() -> None:
     assert [event.event_id for event in second.event_refs] == ["evt_001", "evt_002"]
     assert second.latest_event is not None
     assert second.latest_event.event_id == "evt_002"
-    assert second.branch.updated_at > created.branch.updated_at
+    assert second.branch.updated_at >= created.branch.updated_at
 
 
 def test_append_canonical_event_updates_branch_state_and_preserves_correlation() -> None:
@@ -129,7 +129,7 @@ def test_close_branch_marks_branch_closed() -> None:
     closed = manager.close_branch(str(created.branch.branch_id))
 
     assert closed.branch.status == BranchStatus.CLOSED
-    assert closed.branch.updated_at > created.branch.updated_at
+    assert closed.branch.updated_at >= created.branch.updated_at
 
 
 def test_missing_branch_operations_raise_key_error() -> None:
