@@ -31,6 +31,7 @@ from ovis_tool_gateway import (  # noqa: E402
     CapabilityDefinition,
     CapabilityDispatcher,
     CapabilityRegistry,
+    DEFAULT_CAPABILITY_REGISTRY,
     ExecutionRequest,
     PolicyDecision,
 )
@@ -157,9 +158,12 @@ def test_event_writer_records_local_bridge_audit_event_when_context_is_valid() -
     assert result.event_receipt is not None
     records = writer.records()
     assert len(records) == 1
-    assert records[0]["event_type"] == "bridge_action.dispatched"
+    assert records[0]["event_type"] == "bridge_action.previewed"
     assert records[0]["payload"]["payload_inline"]["dry_run"] is True
     assert records[0]["payload"]["payload_inline"]["would_dispatch"] is False
+    assert records[0]["payload"]["payload_inline"]["target_system"] == "notion"
+    assert records[0]["payload"]["payload_inline"]["action_type"] == "create_row"
+    assert records[0]["payload"]["payload_inline"]["status"] == "pending"
 
 
 def test_event_writer_is_skipped_without_valid_event_context() -> None:
@@ -216,3 +220,7 @@ def test_bridge_dry_run_can_run_through_local_dispatcher_registration() -> None:
     assert result.execution_status == "success"
     assert result.result_payload["allowed"] is True
     assert result.result_payload["would_dispatch"] is False
+
+
+def test_bridge_preview_is_not_registered_in_default_capability_registry() -> None:
+    assert DEFAULT_CAPABILITY_REGISTRY.get("bridge.preview") is None

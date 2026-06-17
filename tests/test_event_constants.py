@@ -63,5 +63,10 @@ def test_event_family_groupings_are_sourced_from_canonical_event_type() -> None:
         EventType.CAPABILITY_COMPLETED,
         EventType.CAPABILITY_ERROR,
     )
-    assert BRIDGE_EVENT_FAMILIES[-1] == EventType.BRIDGE_ACTION_FAILED
+    assert BRIDGE_EVENT_FAMILIES == (
+        EventType.BRIDGE_ACTION_PREVIEWED,
+        EventType.BRIDGE_ACTION_DISPATCHED,
+        EventType.BRIDGE_ACTION_COMPLETED,
+        EventType.BRIDGE_ACTION_FAILED,
+    )
     assert COMPACTION_EVENT_FAMILIES == (EventType.COMPACTION_CREATED,)

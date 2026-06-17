@@ -186,7 +186,7 @@ class BridgeDryRunService:
 
         event = build_root_event(
             event_id=generate_event_id(),
-            event_type=EventType.BRIDGE_ACTION_DISPATCHED,
+            event_type=EventType.BRIDGE_ACTION_PREVIEWED,
             correlation_id=request.correlation_id,
             object_type=ObjectType.BRIDGE_ACTION,
             object_id=str(bridge_action.bridge_action_id),

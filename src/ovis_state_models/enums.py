@@ -128,6 +128,7 @@ class EventType(StrEnum):
     APPROVAL_RECORDED = "approval.recorded"
     EXECUTE_JOB_CREATED = "execute_job.created"
     EXECUTE_JOB_STATUS_CHANGED = "execute_job.status_changed"
+    BRIDGE_ACTION_PREVIEWED = "bridge_action.previewed"
     BRIDGE_ACTION_DISPATCHED = "bridge_action.dispatched"
     BRIDGE_ACTION_COMPLETED = "bridge_action.completed"
     BRIDGE_ACTION_FAILED = "bridge_action.failed"
