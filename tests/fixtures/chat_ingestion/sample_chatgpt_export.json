@@ -1,0 +1,67 @@
+[
+  {
+    "id": "synthetic-conversation-001",
+    "title": "Synthetic Export Intake Check",
+    "create_time": 1710000000.0,
+    "update_time": 1710000060.0,
+    "current_node": "assistant-node-001",
+    "mapping": {
+      "root": {
+        "id": "root",
+        "parent": null,
+        "children": [
+          "user-node-001"
+        ],
+        "message": null
+      },
+      "user-node-001": {
+        "id": "user-node-001",
+        "parent": "root",
+        "children": [
+          "assistant-node-001"
+        ],
+        "message": {
+          "id": "message-user-001",
+          "author": {
+            "role": "user",
+            "name": null,
+            "metadata": {}
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "Please structure this synthetic export."
+            ]
+          },
+          "create_time": 1710000001.0,
+          "update_time": null,
+          "status": "finished_successfully",
+          "metadata": {}
+        }
+      },
+      "assistant-node-001": {
+        "id": "assistant-node-001",
+        "parent": "user-node-001",
+        "children": [],
+        "message": {
+          "id": "message-assistant-001",
+          "author": {
+            "role": "assistant",
+            "name": null,
+            "metadata": {}
+          },
+          "content": {
+            "content_type": "text",
+            "parts": [
+              "This fixture is structural only."
+            ]
+          },
+          "create_time": 1710000002.0,
+          "update_time": null,
+          "status": "finished_successfully",
+          "metadata": {}
+        }
+      }
+    }
+  }
+]

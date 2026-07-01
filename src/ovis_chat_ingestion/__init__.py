@@ -1,0 +1,57 @@
+"""Local chat ingestion object contracts."""
+
+from .types import (
+    CHATGPT_EXPORT_PARSER_VERSION,
+    IMPORT_MANIFEST_VERSION,
+    PARSER_VERSION,
+    SOURCE_TYPE_CHATGPT_EXPORT,
+    SOURCE_TYPE_TRANSCRIPT,
+    ChatMessage,
+    ChatSegment,
+    ChatSource,
+    ImportManifest,
+    dataclass_to_dict,
+    make_chatgpt_export_source_id,
+    make_message_id,
+    make_segment_id,
+    make_transcript_source_id,
+    raw_sha256_hexdigest,
+    record_to_json,
+    record_to_jsonl_line,
+    short_sha256,
+)
+from .chatgpt_export import (
+    ParsedChatGPTExport,
+    parse_chatgpt_export_conversations,
+    parse_chatgpt_export_file,
+    parse_chatgpt_export_text,
+)
+from .transcript import ParsedTranscript, parse_transcript_file, parse_transcript_text
+
+__all__ = [
+    "CHATGPT_EXPORT_PARSER_VERSION",
+    "IMPORT_MANIFEST_VERSION",
+    "PARSER_VERSION",
+    "SOURCE_TYPE_CHATGPT_EXPORT",
+    "SOURCE_TYPE_TRANSCRIPT",
+    "ChatMessage",
+    "ChatSegment",
+    "ChatSource",
+    "ImportManifest",
+    "ParsedChatGPTExport",
+    "ParsedTranscript",
+    "dataclass_to_dict",
+    "make_chatgpt_export_source_id",
+    "make_message_id",
+    "make_segment_id",
+    "make_transcript_source_id",
+    "parse_chatgpt_export_conversations",
+    "parse_chatgpt_export_file",
+    "parse_chatgpt_export_text",
+    "parse_transcript_file",
+    "parse_transcript_text",
+    "raw_sha256_hexdigest",
+    "record_to_json",
+    "record_to_jsonl_line",
+    "short_sha256",
+]
