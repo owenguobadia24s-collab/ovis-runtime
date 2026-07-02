@@ -33,6 +33,21 @@ from ovis_branch_compaction import BranchCompactionExecutor, CompactionHooks, Co
 from ovis_event_log import FileEventWriter
 from ovis_loop import LoopApprovalInput, LoopExecutionMode, LoopRequest, LoopSignalInput, RecursiveLoopRunner
 from ovis_metadata import init_file, normalize_workspace, reconcile_workspace, scan_workspace
+from ovis_operating_hub import (
+    DEFAULT_PROMOTION_OUTPUT_TYPE,
+    EVIDENCE_POSTURES,
+    list_review_candidates,
+    load_hub_status_json,
+    load_review_candidates_from_queue_json,
+    load_review_decisions_json,
+    prepare_local_promotion,
+    record_to_dict,
+    render_dashboard_markdown,
+    render_next_action_text,
+    render_promotion_output_text,
+    render_review_list_text,
+    write_dashboard_markdown,
+)
 from ovis_responses_runtime import (
     OpenAIResponsesProviderAdapter,
     RuntimeAdapterConfig,
@@ -145,6 +160,38 @@ def _build_parser() -> argparse.ArgumentParser:
     metadata_init.add_argument("--system-slug")
     metadata_init.add_argument("--related-module-id", action="append")
     metadata_init.set_defaults(func=_handle_metadata_init_file)
+
+    review_parser = subparsers.add_parser("review")
+    review_subparsers = review_parser.add_subparsers(dest="review_command", required=True)
+    review_list = review_subparsers.add_parser("list", parents=[common])
+    review_list.add_argument("--queue-json", required=True, help="Path to a local B4 review queue JSON file.")
+    review_list.add_argument("--boundary")
+    review_list.add_argument("--status")
+    review_list.add_argument("--route")
+    review_list.add_argument("--evidence-posture", choices=EVIDENCE_POSTURES)
+    review_list.add_argument("--ambiguity-status")
+    review_list.set_defaults(func=_handle_review_list)
+
+    review_promote = review_subparsers.add_parser("promote", parents=[common])
+    review_promote.add_argument("candidate_id", help="Explicit local review candidate ID to promote.")
+    review_promote.add_argument("--queue-json", required=True, help="Path to a local B4 review queue JSON file.")
+    review_promote.add_argument("--decision-json", required=True, help="Path to existing B4 review decision JSON.")
+    review_promote.add_argument("--decision-id", help="Required only when multiple approvals exist for a candidate.")
+    review_promote.add_argument("--route", help="Optional assertion that the approved decision uses this route.")
+    review_promote.add_argument("--output-ref", required=True, help="Local promotion output path or reference.")
+    review_promote.add_argument("--output-type", default=DEFAULT_PROMOTION_OUTPUT_TYPE)
+    review_promote.set_defaults(func=_handle_review_promote)
+
+    hub_parser = subparsers.add_parser("hub")
+    hub_subparsers = hub_parser.add_subparsers(dest="hub_command", required=True)
+    hub_render = hub_subparsers.add_parser("render", parents=[common])
+    hub_render.add_argument("--status-json", required=True, help="Path to a local HubStatus JSON record.")
+    hub_render.add_argument("--output", help="Optional explicit Markdown output path.")
+    hub_render.set_defaults(func=_handle_hub_render)
+
+    hub_next = hub_subparsers.add_parser("next", parents=[common])
+    hub_next.add_argument("--status-json", required=True, help="Path to a local HubStatus JSON record.")
+    hub_next.set_defaults(func=_handle_hub_next)
 
     run = subparsers.add_parser("run", parents=[common])
     run.add_argument("--objective", required=True)
@@ -373,6 +420,66 @@ def _handle_metadata_init_file(args: argparse.Namespace) -> int:
         related_module_ids=list(args.related_module_id or []),
     )
     _write_output(result.as_dict(), as_json=args.json)
+    return 0
+
+
+def _handle_review_list(args: argparse.Namespace) -> int:
+    candidates = load_review_candidates_from_queue_json(args.queue_json)
+    items = list_review_candidates(
+        candidates,
+        boundary=args.boundary,
+        status=args.status,
+        route=args.route,
+        evidence_posture=args.evidence_posture,
+        ambiguity_status=args.ambiguity_status,
+    )
+    if args.json:
+        _write_output([record_to_dict(item) for item in items], as_json=True)
+    else:
+        print(render_review_list_text(items), end="")
+    return 0
+
+
+def _handle_review_promote(args: argparse.Namespace) -> int:
+    candidates = load_review_candidates_from_queue_json(args.queue_json)
+    decisions = load_review_decisions_json(args.decision_json)
+    output = prepare_local_promotion(
+        candidates,
+        decisions,
+        candidate_id=args.candidate_id,
+        decision_id=args.decision_id,
+        route=args.route,
+        output_type=args.output_type,
+        output_path_or_ref=args.output_ref,
+    )
+    if args.json:
+        _write_output(record_to_dict(output), as_json=True)
+    else:
+        print(render_promotion_output_text(output), end="")
+    return 0
+
+
+def _handle_hub_render(args: argparse.Namespace) -> int:
+    status = load_hub_status_json(args.status_json)
+    if args.output:
+        output_path = write_dashboard_markdown(status, args.output)
+        payload = {"output": str(output_path), "next_action": status.next_action}
+        _write_output(payload, as_json=args.json)
+        return 0
+    rendered = render_dashboard_markdown(status)
+    if args.json:
+        _write_output({"markdown": rendered, "next_action": status.next_action}, as_json=True)
+    else:
+        print(rendered, end="")
+    return 0
+
+
+def _handle_hub_next(args: argparse.Namespace) -> int:
+    status = load_hub_status_json(args.status_json)
+    if args.json:
+        _write_output({"next_action": status.next_action, "source_refs": list(status.source_refs)}, as_json=True)
+    else:
+        print(render_next_action_text(status), end="")
     return 0
 
 
